@@ -142,6 +142,24 @@ class Provider(Base):
     salesman_phone = Column(Integer)
 
 
+class Client(Base):
+    __tablename__ = "clients"
+    id = Column(Integer, primary_key=True)
+    first_name = Column(String(150), nullable=True)
+    last_name = Column(String(150), nullable=True)
+    phone= Column(Integer, unique=True)
+    birthday = Column(DateTime)
+    discount = Column(Integer)
+    email = Column(String(100))
+    password = Column(String(255), nullable=False)
+    created_at = Column('created_at', DateTime, default=func.now())
+    refresh_token = Column(String(255))
+    information = Column(String, nullable=True)
+
+
+
+
+
 
 
 
