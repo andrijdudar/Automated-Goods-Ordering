@@ -125,3 +125,19 @@ class HelloResponsemodel(BaseModel):
 class UploadTextModel(BaseModel):
     message: str
     
+#########################################
+    
+class IngredientModel(BaseModel):
+    pass
+
+class IngredientResponseModel(BaseModel):
+    pass
+
+#######################################33
+
+class PremixModel(BaseModel):
+    pass
+
+
+class PremixResponseModel(BaseModel):
+    pass
