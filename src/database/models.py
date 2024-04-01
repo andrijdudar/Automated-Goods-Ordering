@@ -3,7 +3,7 @@ from typing import List
 from enum import Enum
 import enum
 
-from sqlalchemy import Column, Integer,Float, String, Boolean, DateTime, func, Table, Enum
+from sqlalchemy import Column, Integer,Float, String, Boolean, DateTime, func, Table, Enum, BIGINT
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql.schema import ForeignKey
 from sqlalchemy.sql.sqltypes import DateTime
@@ -57,9 +57,11 @@ class Dish(Base):
     dish_name = Column(String(200), unique=True)
     description = Column(String(900))
     ingredients =  relationship("Ingredient", secondary=dish_m2m_ingredient, back_populates="dishes")
-    user_id = Column('user_id', ForeignKey('users.id', ondelete='CASCADE'), default=None)
+    comments = relationship('Comment', backref="dishes")
+    # user_id = Column('user_id', ForeignKey('users.id', ondelete='CASCADE'), default=None)
     tags = relationship("Tag", secondary=dish_m2m_tag, back_populates="dishes")
     stop_list = Column(Boolean)
+    dish_to_sold = Column(Boolean)
     price = Column(Integer)
     created_at = Column("created_at", DateTime, default=func.now())
     updated_at = Column("updated_at", DateTime, default=func.now(), onupdate=func.now())
@@ -71,11 +73,16 @@ class Ingredient(Base):
     __tablename__ = "ingredients"
     id = Column(Integer, primary_key=True)
     name = Column(String(200), unique=True)
-    product = Column(String(200), unique=True)
-    amount = Column(Integer)
-    suma = Column(Integer)
+    product_id = Column(String(200), unique=True)
+    amount = Column(Float)
+    suma = Column(Float)
     dishes = relationship("Dish", secondary=dish_m2m_ingredient, back_populates="ingredients")
-    provider = Column(Integer, ForeignKey('providers.id'))
+    premixes = relationship("Premix", secondary=dish_m2m_ingredient, back_populates="ingredients")
+    stock_minimum = Column(Float)
+    stock_maximum = Column(Float)
+    provider_id = Column(Integer, ForeignKey('providers.id'))
+    provider = relationship('Provider', back_populates='ingredients')
+    using = Column(Boolean)
     created_at = Column("created_at", DateTime, default=func.now())
     updated_at = Column("updated_at", DateTime, default=func.now(), onupdate=func.now())
 
@@ -86,6 +93,7 @@ class Premix(Base):
     name = Column(String(200), unique=True)
     dishes = relationship("Dish", secondary=dish_m2m_premix, back_populates="premixes")
     ingredients = relationship("Ingredient", secondary=premix_m2m_ingredient, back_populates="premixes")
+    description = Column(String(900))
     created_at = Column("created_at", DateTime, default=func.now())
     updated_at = Column("updated_at", DateTime, default=func.now(), onupdate=func.now())
 
@@ -109,6 +117,17 @@ class Tag(Base):
     dishes  = relationship("Dish", secondary=dish_m2m_tag, back_populates="tags")
 
 
+class Comment(Base):
+    __tablename__ = "comments"
+    id = Column(Integer, primary_key=True)
+    comment = Column(String(955), nullable=False)
+    user_id = Column("user_id", ForeignKey('users.id', ondelete='CASCADE'), default=None)
+    username = relationship("User", backref="comments")
+    dish_id = Column("dish_id", ForeignKey("dich.id", ondelete="CASCADE"), default=None)
+    created_at = Column("created_at", DateTime, default=func.now())
+    updated_at = Column("updated_at", DateTime, default=func.now(), onupdate=func.now())
+
+
 
 
 class Role(enum.Enum):
@@ -123,13 +142,14 @@ class User(Base):
     username = Column(String(150), nullable=True)
     first_name = Column(String(150), nullable=True)
     last_name = Column(String(150), nullable=True)
-    chat_id = Column(Integer, unique=True)
+    chat_id = Column(BIGINT, unique=True)
     email = Column(String(100))
     password = Column(String(255), nullable=False)
     created_at = Column('created_at', DateTime, default=func.now())
     refresh_token = Column(String(255))
     banned = Column(Boolean, default=False)
     role = Column('role', Enum(Role), default=Role.user)
+    provider = relationship('Provider', back_populates='users')
     bot_role = Column(String(15))
     information = Column(String, nullable=True)
 
@@ -139,7 +159,10 @@ class Provider(Base):
     id = Column(Integer, primary_key=True)
     provider_name = Column(String(200), nullable=True)
     salesman_name = Column(String(200), nullable=True)
-    salesman_phone = Column(Integer)
+    salesman_phone = Column(BIGINT)
+    user = relationship('User', back_populates='providers')
+    ingredients = relationship('Ingrdient', back_populates='provider')
+    info = Column(String(255), nullable=True)
 
 
 class Client(Base):
