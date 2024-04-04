@@ -171,3 +171,16 @@ class CommentModel(BaseModel):
 class CommentModelUpdate(BaseModel):
     comment: str = Field(min_length=1, max_length=255)
     comment_id: int = Path(ge=1)
+
+
+################################################
+    
+class IngOrderModel(BaseModel):
+    id: int
+    name: str
+    order: int
+
+class OrederIngByProvider(BaseModel):
+    id: int
+    name: str
+    order: list[IngOrderModel]

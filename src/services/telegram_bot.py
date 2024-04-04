@@ -7,7 +7,6 @@ import requests
 from dotenv import load_dotenv
 from icecream import ic
 from aiohttp import ClientSession
-from aiohttp import ClientSession
 from fastapi import FastAPI, Request, APIRouter
 from sqlalchemy.orm import Session
 
@@ -18,12 +17,18 @@ from src.database.models import Dish, User
 
 load_dotenv()
 
+# TG_API = os.getenv("BOT_TOKEN")
+# SEND_MESSAGE_URL = os.getenv("SEND_MESSAGE_URL")
+# SEND_PHOTO_URL = os.getenv("SEND_PHOTO_URL")
+
 
 class TelegramBot:
 
-    TG_API = os.getenv("BOT_TOKEN")
-    SEND_MESSAGE_URL = os.getenv("SEND_MESSAGE_URL")
-    SEND_PHOTO_URL = os.getenv("SEND_PHOTO_URL")
+    def __init__(self, TG_API, SEND_MESSAGE_URL, SEND_PHOTO_URL) -> None:
+        self.TG_API = TG_API
+        self.SEND_MESSAGE_URL = SEND_MESSAGE_URL
+        self.SEND_PHOTO_URL = SEND_PHOTO_URL
+
 
     async def send_start_message(self, request):
         name_of_buttons = ['зареєструватись як user', 'зареєструватись як admin']
