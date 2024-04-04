@@ -9,7 +9,16 @@ from fastapi.middleware.cors import CORSMiddleware
 from httpx import AsyncClient
 from pyngrok import ngrok
 
-from src.routes import bot_actions, fillers, dishes, categories, users, tags, ingredients, premixes, comments
+from src.routes import (bot_actions, 
+                        fillers, 
+                        dishes, 
+                        categories, 
+                        users, 
+                        tags, 
+                        ingredients,
+                        premixes, 
+                        comments,
+                        orders)
 
 
 
@@ -49,6 +58,7 @@ app.include_router(tags.router, prefix="/api")
 app.include_router(ingredients.router, prefix="/api")
 app.include_router(premixes.router, prefix="/api")
 app.include_router(comments.router, prefix="/api")
+app.include_router(orders.router, prefix="/api")
 
 
 

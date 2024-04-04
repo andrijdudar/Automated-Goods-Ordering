@@ -3,7 +3,7 @@ import hashlib
 import json
 import functools
 import logging
-from  fastapi import requests
+import requests
 from datetime import datetime
 from os.path import join, dirname
 from dotenv import load_dotenv
