@@ -44,14 +44,59 @@ class TagResponseModel(BaseModel):
     id: int
     name_tag: str
 
+#############################################
+
+class CommentResponseModel(BaseModel):
+    id: int
+    comment: str
+
+
+
 
 #############################################
+class IngredientModel(BaseModel):
+    id: int
+    quantity: float
+
+class IngredientResponseModel(BaseModel):
+    id: int
+    name: str
+    amount: float
+    suma: float
+    stock_minimum: float
+    stock_maximum: float
+    standart_container: float
+    measure: str
+    using: bool
+
+
+
+#######################################33
+
+class PremixModel(BaseModel):
+    name: str
+    ingredients: list[IngredientModel]
+    description: str
+
+class PremixResponseModel(BaseModel):
+    name: str
+    ingredients: list[IngredientModel]
+    description: str
+
+class PremixToDishModel(BaseModel):
+    id: int
+    quantity: float
+
+
+###########################################3
 
 
 class DishModel(BaseModel):
     dish_name: str
     description: str = None
-    ingredients: str = None
+    comment: str
+    ingredients: list[IngredientModel]
+    premixes: list[PremixToDishModel] = None
     tags: list[str] = None
     category: str
     price: int = None
@@ -63,15 +108,18 @@ class DishResponseModel(BaseModel):
     image_public_id: Any
     dish_name: str
     description: Any
-    ingredients: str
-    user_id: Any
+    comments: list[CommentResponseModel]
+    ingredients: list[IngredientModel]
+    premixes: list[PremixToDishModel]
+    # user_id: Any
     first_name: str = None
     tags: list[TagResponseModel] = Any
-    created_at: datetime
-    updated_at: datetime = None
     stop_list: Any
+    need_to_sold: Any
     category_name: str = None
     category_id: int = None
+    created_at: datetime
+    updated_at: datetime = None
 
 
 
@@ -126,38 +174,6 @@ class UploadTextModel(BaseModel):
     message: str
     
 #########################################
-    
-class IngredientModel(BaseModel):
-    id: int
-    quantity: float
-
-class IngredientResponseModel(BaseModel):
-    id: int
-    name: str
-    amount: float
-    suma: float
-    stock_minimum: float
-    stock_maximum: float
-    standart_container: float
-    measure: str
-    using: bool
-
-
-
-#######################################33
-
-class PremixModel(BaseModel):
-    name: str
-    ingredients: list[IngredientModel]
-    description: str
-
-class PremixResponseModel(BaseModel):
-    name: str
-    ingredients: list[IngredientModel]
-    description: str
-
-
-###########################################3
 
 class CommentDeleteResponse(BaseModel):
     id: int = 1

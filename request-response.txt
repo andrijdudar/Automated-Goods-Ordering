@@ -637,6 +637,7 @@ PATCH   # запит щоб змінити в існуюючому обєкті 
                 name: str | null
                 description: str | null
                 ingredients: [{"id": int, "quantity": float}]
+                premixes: [{"id": int, "quantity": float}]
                 tags: str | null
                 category: {"id": int}
                 price: int | null

@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from icecream import ic
 
 from src.schemas import DishModel, UpdateDishModel
-from src.database.models import Dish, Tag, Category, User
+from src.database.models import Dish, Tag, Category, User, Comment
 from src.services.images import image_cloudinary
 from src.repository.tags import find_tags
 
@@ -20,11 +20,11 @@ async def get_comment_by_id(comment_id: int, db: Session):
     return db.query(Comment).filter_by(id=comment_id).first()
 
 
-async def create_comment(body: CommentModel, current_user: User, db: Session):
-    comment = Comment(**body.dict(), user_id=current_user.id)
-    db.add(comment)
+async def create_comment(some_comment: str, db: Session):#, current_user: User, db: Session):
+    new_comment = Comment(comment = some_comment)#, user_id=current_user.id)
+    db.add(new_comment)
     db.commit()
-    return comment
+    return new_comment
 
 
 async def update_comment(body: CommentModel, db: Session, current_user: User):

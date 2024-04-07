@@ -5,7 +5,7 @@ from fastapi import HTTPException,APIRouter, Depends, status, UploadFile, File, 
 from sqlalchemy.orm import Session
 from PIL import Image
 
-from src.schemas import DishResponseModel, UpdateDishModel
+from src.schemas import DishResponseModel, UpdateDishModel, PremixToDishModel, IngredientModel
 from src.database.db_connection import get_db
 from src.database.models import Dish, Category
 from src.repository import dishes, bot_contents
@@ -38,7 +38,8 @@ async def get_all_dishes(db: Session = Depends(get_db)):
 @router.post('/create_new_dish', response_model=DishResponseModel, status_code=status.HTTP_201_CREATED)
 async def create_new_dish(name: str = Form(),
                           description: str = Form(),
-                          ingredients: str = Form(),
+                          ingredients: list[IngredientModel] = Form(),
+                          premixes: list[PremixToDishModel] = Form(),
                           tags: str = Form(None), 
                           category: str = Form(None),
                           price: int = Form(None),
@@ -50,7 +51,8 @@ async def create_new_dish(name: str = Form(),
      image_url, image_public_id = await image_cloudinary.add_image(resized_contents)
      dish = await dishes.add_new_dish(name, 
                                       description, 
-                                      ingredients, 
+                                      ingredients,
+                                      premixes, 
                                       tags, 
                                       category, 
                                       price, 
@@ -64,37 +66,37 @@ async def create_new_dish(name: str = Form(),
      return dish
 
 
-@router.put("/update", 
-            response_model=DishResponseModel, 
-            status_code=status.HTTP_202_ACCEPTED)
-async def update_dish(id: int = Form(),
-                      name: str = Form(),
-                      description: str = Form(),
-                      ingredients: str = Form(),
-                      tags: str = Form(None), 
-                      category: str = Form(None),
-                      price: int = Form(None),
-                      file: UploadFile = File(), 
-                      db: Session = Depends(get_db)):
-    file.filename = f"{uuid.uuid4()}.jpg"
-    contents =  await file.read()
-    resized_contents = resize_image(contents)
-    image_url, image_public_id = await image_cloudinary.add_image(resized_contents)
-    dish = await dishes.update_dish(id, 
-                                    name, 
-                                    description, 
-                                    ingredients, 
-                                    tags, 
-                                    category, 
-                                    price, 
-                                    image_url, 
-                                    image_public_id, 
-                                    db)
-    if dish is None:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND, detail="Dish not found"
-        )
-    return dish
+# @router.put("/update", 
+#             response_model=DishResponseModel, 
+#             status_code=status.HTTP_202_ACCEPTED)
+# async def update_dish(id: int = Form(),
+#                       name: str = Form(),
+#                       description: str = Form(),
+#                       ingredients: str = Form(),
+#                       tags: str = Form(None), 
+#                       category: str = Form(None),
+#                       price: int = Form(None),
+#                       file: UploadFile = File(), 
+#                       db: Session = Depends(get_db)):
+#     file.filename = f"{uuid.uuid4()}.jpg"
+#     contents =  await file.read()
+#     resized_contents = resize_image(contents)
+#     image_url, image_public_id = await image_cloudinary.add_image(resized_contents)
+#     dish = await dishes.update_dish(id, 
+#                                     name, 
+#                                     description, 
+#                                     ingredients, 
+#                                     tags, 
+#                                     category, 
+#                                     price, 
+#                                     image_url, 
+#                                     image_public_id, 
+#                                     db)
+#     if dish is None:
+#         raise HTTPException(
+#             status_code=status.HTTP_404_NOT_FOUND, detail="Dish not found"
+#         )
+#     return dish
 
 
 @router.patch('/update_photo',

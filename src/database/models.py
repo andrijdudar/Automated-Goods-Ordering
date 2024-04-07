@@ -62,10 +62,10 @@ class Dish(Base):
     # user_id = Column('user_id', ForeignKey('users.id', ondelete='CASCADE'), default=None)
     tags = relationship("Tag", secondary=dish_m2m_tag, back_populates="dishes")
     stop_list = Column(Boolean)
-    dish_to_sold = Column(Boolean)
+    need_to_sold = Column(Boolean)
     price = Column(Integer)
     created_at = Column("created_at", DateTime, default=func.now())
-    updated_at = Column("updated_at", DateTime, default=func.now(), onupdate=func.now())
+    updated_at = Column("updated_at", DateTime, onupdate=func.now())
     category_id = Column(Integer, ForeignKey('categories.id'))
     category = relationship('Category', back_populates='dishes')
 
@@ -87,7 +87,7 @@ class Ingredient(Base):
     provider = relationship('Provider', back_populates='ingredients')
     using = Column(Boolean)
     created_at = Column("created_at", DateTime, default=func.now())
-    updated_at = Column("updated_at", DateTime, default=func.now(), onupdate=func.now())
+    updated_at = Column("updated_at", DateTime, onupdate=func.now())
 
 
 class Premix(Base):
@@ -98,7 +98,7 @@ class Premix(Base):
     ingredients = relationship("Ingredient", secondary=premix_m2m_ingredient, back_populates="premixes")
     description = Column(String(900))
     created_at = Column("created_at", DateTime, default=func.now())
-    updated_at = Column("updated_at", DateTime, default=func.now(), onupdate=func.now())
+    updated_at = Column("updated_at", DateTime, onupdate=func.now())
 
 
 
