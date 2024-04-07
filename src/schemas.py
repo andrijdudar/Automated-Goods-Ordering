@@ -128,19 +128,33 @@ class UploadTextModel(BaseModel):
 #########################################
     
 class IngredientModel(BaseModel):
-    pass
+    id: int
+    quantity: float
 
 class IngredientResponseModel(BaseModel):
-    pass
+    id: int
+    name: str
+    amount: float
+    suma: float
+    stock_minimum: float
+    stock_maximum: float
+    standart_container: float
+    measure: str
+    using: bool
+
+
 
 #######################################33
 
 class PremixModel(BaseModel):
-    pass
-
+    name: str
+    ingredients: list[IngredientModel]
+    description: str
 
 class PremixResponseModel(BaseModel):
-    pass
+    name: str
+    ingredients: list[IngredientModel]
+    description: str
 
 
 ###########################################3

@@ -4,11 +4,12 @@ from dotenv import load_dotenv
 from fastapi import status, HTTPException
 from sqlalchemy.orm import Session
 
-from src.schemas import OrederIngByProvider
+from src.schemas import OrederIngByProvider, IngredientResponseModel
 from src.database.models import Dish, Tag, Category, User, Ingredient, Provider
 from src.services.resto_stock_balanse import  IikoAPIHandler
 from src.services.telegram_bot import TelegramBot
 from src.repository.tags import find_tags
+
 
 
 
@@ -23,11 +24,36 @@ telegram_bot = TelegramBot(TG_API, SEND_MESSAGE_URL, SEND_PHOTO_URL)
 
 
 async def get_all_ingredients(db: Session) -> list[Ingredient]:
-    pass
+    ingredients = db.query(Ingredient).all()
+    return ingredients
 
 
 async def get_ingredient(id: int, db: Session) -> Ingredient:
-    pass
+    ingredient = db.query(Ingredient).filter(Ingredient.id == id).first()
+    return ingredient
+
+
+async def patch_ingredient(body: IngredientResponseModel, db: Session):
+    ingredient = db.query(Ingredient).filter(Ingredient.id == body.id).first()
+    
+    if body.name:
+        ingredient.name = body.name
+    if body.using: 
+        ingredient.using = body.using
+    if body.stock_minimum:
+        ingredient.stock_minimum = body.stock_minimum
+    if body.stock_maximum:
+        ingredient.stock_maximum = body.stock_maximum
+    if body.standart_container:
+        ingredient.standart_container = body.standart_container
+    if body.measure:
+        ingredient.measure = body.measure
+
+    db.commit()
+    return ingredient
+
+
+
 
 
 async def update_ingerdients(data: list[dict], db: Session):
@@ -45,7 +71,9 @@ async def update_ingerdients(data: list[dict], db: Session):
                 product_id = obj.get("product"),
                 amount = obj.get("amount"),
                 suma = obj.get("sum"),
+                using = True
                     )
+            db.add(new_ingredient)
             db.commit()
 
 
@@ -97,3 +125,5 @@ async def send_order_to_provider(body: list[OrederIngByProvider], db: Session):
         }
         await telegram_bot.send_bot_message(data)
     return {"Message": "The order has been sent successfully"}
+
+
