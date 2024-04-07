@@ -57,6 +57,7 @@ class Dish(Base):
     dish_name = Column(String(200), unique=True)
     description = Column(String(900))
     ingredients =  relationship("Ingredient", secondary=dish_m2m_ingredient, back_populates="dishes")
+    premixes =  relationship("Premix", secondary=dish_m2m_premix, back_populates="dishes")
     comments = relationship('Comment', backref="dishes")
     # user_id = Column('user_id', ForeignKey('users.id', ondelete='CASCADE'), default=None)
     tags = relationship("Tag", secondary=dish_m2m_tag, back_populates="dishes")

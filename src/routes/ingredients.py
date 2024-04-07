@@ -16,7 +16,7 @@ router = APIRouter(prefix='/ingredients')
 
 
 
-@router.get("/", response_model=list[IngredientResponseModel])
+@router.get("/", response_model=list[IngredientModel])
 async def get_all_ingredients(db: Session = Depends(get_db)):
     ingredients_list = await ingredients.get_all_ingredients(db)
     if ingredients_list is None:
@@ -60,3 +60,14 @@ async def get_orders(db: Session = Depends(get_db)):
 async def send_orders(body: list[OrederIngByProvider], 
                       db: Session = Depends(get_db)):
     return await ingredients.send_order_to_provider(body, db)
+
+
+@router.patch("/patch", response_model=IngredientResponseModel)
+async def patch_ingredient(body: IngredientResponseModel, 
+                           db: Session = Depends(get_db)):
+    ingredient = await ingredients.patch_ingredient(body, db)
+    if ingredient is None:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="Ingredient not found"
+        )
+    return ingredient

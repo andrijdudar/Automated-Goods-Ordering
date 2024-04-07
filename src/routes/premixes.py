@@ -44,3 +44,9 @@ async def create_premix(body: PremixModel, db: Session = Depends(get_db)):
             status_code=status.HTTP_404_NOT_FOUND, detail="Premix not found"
         )
     return premix
+
+
+
+@router.delete("/delete/{id}")
+async def delete_premix(id: int, db: Session = Depends(get_db)):
+    return await premixes.delete_premix(id, db)
