@@ -99,7 +99,7 @@ async def get_order(db: Session) -> list[Ingredient]:
                 ing = {}
                 ing["id"] = ingredient.id
                 ing["name"] = ingredient.name
-                ing["order"] = calculate_order(ingredient.standart_container, ingredient.stock_maximum, ingredient.amount)
+                ing["quantity"] = calculate_order(ingredient.standart_container, ingredient.stock_maximum, ingredient.amount)
                 value.append(ing)
             provider_with_ingredients["id"] = provider.id
             provider_with_ingredients["name"] = provider.provider_name

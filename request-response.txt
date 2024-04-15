@@ -42,11 +42,10 @@ GET  # запит на отримання інформації
                     },
                     ...
                 ]
-                "dishes_left": int # скільки залишилось стави
                 "created_at":datetime | str, # у мене це тип даних - "2024-01-20T12:20:10.289813"
                 "updated_at":datetime | str | null,
-                "stop_list":Bool,
-                "dish_to_sold": boll,
+                "stop_list":bool,
+                "dish_to_sold": bool,
                 "category_name":null,
                 "category_id":int
             }
@@ -91,11 +90,10 @@ GET  # запит на отримання інформації
                     },
                     ...
                 ]
-                "dishes_left": int # скільки залишилось стави
                 "created_at":datetime | str, # у мене це тип даних - "2024-01-20T12:20:10.289813"
                 "updated_at":datetime | str | null,
-                "stop_list":Bool,
-                "dish_to_sold": boll,
+                "stop_list":bool,
+                "dish_to_sold": bool,
                 "category_name":null,
                 "category_id":int
             }, 
@@ -164,11 +162,10 @@ GET  # запит на отримання інформації
                     },
                     ...
                 ]
-                "dishes_left": int # скільки залишилось стави
                 "created_at":datetime | str, # у мене це тип даних - "2024-01-20T12:20:10.289813"
                 "updated_at":datetime | str | null,
-                "stop_list":Bool,
-                "dish_to_sold": boll,
+                "stop_list":bool,
+                "dish_to_sold": bool,
                 "category_name":null,
                 "category_id":int
             },
@@ -217,11 +214,10 @@ url/api/dishes/stop-list # отримати всі обєкти dishes які є
                     },
                     ...
                 ]
-                "dishes_left": int # скільки залишилось стави
                 "created_at":datetime | str, # у мене це тип даних - "2024-01-20T12:20:10.289813"
                 "updated_at":datetime | str | null,
-                "stop_list":Bool,
-                "dish_to_sold": boll,
+                "stop_list":bool,
+                "dish_to_sold": bool,
                 "category_name":null,
                 "category_id":int
             }, 
@@ -269,11 +265,10 @@ url/api/dishes/dish_to_sold # отримати всі обєкти dishes які
                     },
                     ...
                 ]
-                "dishes_left": int # скільки залишилось стави
                 "created_at":datetime | str, # у мене це тип даних - "2024-01-20T12:20:10.289813"
                 "updated_at":datetime | str | null,
-                "stop_list":Bool,
-                "dish_to_sold": boll,
+                "stop_list":bool,
+                "dish_to_sold": bool,
                 "category_name":null,
                 "category_id":int
             }, 
@@ -341,12 +336,19 @@ url/api/dishes/dish_to_sold # отримати всі обєкти dishes які
                 ...
             ]
 
-    url/api/orders # отримати список замовлень
+    url/api/ingredients/orders # отримати список замовлень
         відповідь: # status-code 200 OK
             [
                 {
-                    provider: 
-                }
+                    id: int #  id постачальника
+                    name: str # імя постачальника
+                    order: [
+                        id: int # id інгредіента 
+                        name: str # назва інгредіента
+                        quantity: int # кількість іг  який потрібно замовити
+                    ]
+                },
+                ...
             ]
 
             
@@ -420,10 +422,10 @@ POST  # запит на створення нового обєкту
                     },
                     ...
                 ]
-                "dishes_left": int # скільки залишилось стави
                 "created_at":datetime | str, # у мене це тип даних - "2024-01-20T12:20:10.289813"
                 "updated_at":datetime | str | null,
-                "stop_list":Bool,
+                "stop_list":bool,
+                "dish_to_sold": bool,
                 "category_name":null,
                 "category_id":int
             }
@@ -470,35 +472,6 @@ POST  # запит на створення нового обєкту
                 "description": str
             }
 
-    url/api/provider/create_provider
-        запит:
-            {
-                "provider_name": str,
-                "salesman": {
-                    "id": int
-                }
-                "salesman_phone": str
-                "ingredients": [
-                    {
-                        "id": int
-                    }
-                ]
-                "info": str
-                
-            }
-        відповідь: # status-code 201 Crрeated - повертає новостворений обєкт
-            {
-                "id": int,
-                "provider_name": str,
-                "salesman_name": str,
-                "salesman_phone": int
-                "ingredients": [
-                    {
-                        "id": int
-                    }
-                ]
-                "info": str
-            }
 
 PUT # запит щоб замінити існуюсий обєкт на новий з тим самим id
     url/api/dishes/update   #form-data
@@ -636,15 +609,16 @@ PATCH   # запит щоб змінити в існуюючому обєкті 
                 id: int
                 name: str | null
                 description: str | null
-                ingredients: [{"id": int, "quantity": float}]
-                premixes: [{"id": int, "quantity": float}]
+                ingredients: [{"id": int, "quantity": float}, ...]
+                premixes: [{"id": int, "quantity": float}, ...]
                 tags: str | null
                 category: {"id": int}
                 price: int | null
                 comment: str | null
                 stop-list: bool
+                dish_to_sold: bool
             }  
-            # поле id обовязкове, інші поля ні
+            # поле id обовязкове, інші поля можуть бути null
             # наприклад якщо  потрібно змінити ціну
             # то запит буде таким:
             {
@@ -690,10 +664,10 @@ PATCH   # запит щоб змінити в існуюючому обєкті 
                     },
                     ...
                 ]
-                "dishes_left": int # скільки залишилось стави
                 "created_at":datetime | str, # у мене це тип даних - "2024-01-20T12:20:10.289813"
                 "updated_at":datetime | str | null,
-                "stop_list":Bool,
+                "stop_list":bool,
+                "dish_to_sold": bool,
                 "category_name":null,
                 "category_id":int
             }
@@ -719,26 +693,6 @@ PATCH   # запит щоб змінити в існуюючому обєкті 
                 "updated_at":datetime | str | null,
             }
 
-    url/api/provider/patch
-        запит:
-            {
-                    "id": int,
-                    "provider_name": str,
-                    "salesman_name": str,
-                    "user": {
-                        "id": int
-                    }
-                    "salesman_phone": int,
-                    "info": str
-                }
-        відповідь:
-            {
-                    "id": int,
-                    "provider_name": str,
-                    "salesman_name": str,
-                    "salesman_phone": int
-                    "info": str
-                }
 
     url/api/user/patch
         запит:
@@ -749,6 +703,7 @@ PATCH   # запит щоб змінити в існуюючому обєкті 
                     "last_name": str,
                     "email": str,
                     "information": str
+                    "role": str
                 }
         відповідь:
             {
@@ -758,7 +713,61 @@ PATCH   # запит щоб змінити в існуюючому обєкті 
                     "last_name": str,
                     "email": str,
                     "information": str
+                    "role": str
                 }
+
+    url/api/comments/patch 
+        запит:
+            {
+                "id": int,
+                "comment": str
+            }
+        відповідь:
+            {
+                "id":int,
+                "image_url":str,
+                "image_public_id":str,
+                "dish_name":str,
+                "description":str,
+                "ingredients":[
+                    {
+                        "ingredient_id" : int
+                        "name": str
+                        "quantity": float # кількість яка входить в страву
+                    },
+                    ...                   
+                ]
+                "premixes":[
+                    {
+                        "id": int
+                        "name": str
+                        "description": str
+                        "quantity": float  # кількість яка входить в страву
+                    },
+                    ...
+                ]
+                "tags":[
+                    {
+                        "id":int,
+                        "name_tag":str
+                    },
+
+                    ...
+                        ],
+                "comments": [
+                    {
+                        id: int,
+                        comment: str
+                    },
+                    ...
+                ]
+                "created_at":datetime | str, # у мене це тип даних - "2024-01-20T12:20:10.289813"
+                "updated_at":datetime | str | null,
+                "stop_list":bool,
+                "dish_to_sold": bool,
+                "category_name":null,
+                "category_id":int
+            }
 
 DELETE  # запит який видаляє обєкт
     url/api/dishes/delete/{id}  # видалення страви # {id} - id конкретного обєкту
@@ -773,11 +782,14 @@ DELETE  # запит який видаляє обєкт
     url/api/comments/delete/{id}  # видалення коментар # {id} - id конкретного обєкту
         відпрвідь:  # status-code 204 No Content
 
-    url/api/tagpremixess/delete/{id}  # видалення преміксу # {id} - id конкретного обєкту
+    url/api/premixess/delete/{id}  # видалення преміксу # {id} - id конкретного обєкту
         відпрвідь:  # status-code 204 No Content
 
     url/api/users/delete/{id}  # видалення юзера # {id} - id конкретного обєкту
         відпрвідь:  # status-code 204 No Content
 
     url/api/providers/delete/{id}  # видалення постачальника # {id} - id конкретного обєкту
+        відпрвідь:  # status-code 204 No Content
+
+    url/api/comments/delete/{is} # видалення коментаря # {id} - id конкретного обєкту
         відпрвідь:  # status-code 204 No Content

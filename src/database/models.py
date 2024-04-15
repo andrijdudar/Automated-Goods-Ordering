@@ -166,7 +166,7 @@ class Provider(Base):
     last_name = Column(String(150), nullable=True)
     chat_id = Column(BIGINT, unique=True)
     ingredients = relationship('Ingrdient', back_populates='provider')
-    info = Column(String(255), nullable=True)
+    # info = Column(String(255), nullable=True)
 
 
 class Client(Base):
