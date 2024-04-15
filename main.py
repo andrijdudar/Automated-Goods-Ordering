@@ -18,7 +18,7 @@ from src.routes import (bot_actions,
                         ingredients,
                         premixes, 
                         comments,
-                        orders)
+                        providers)
 
 
 
@@ -58,7 +58,7 @@ app.include_router(tags.router, prefix="/api")
 app.include_router(ingredients.router, prefix="/api")
 app.include_router(premixes.router, prefix="/api")
 app.include_router(comments.router, prefix="/api")
-app.include_router(orders.router, prefix="/api")
+app.include_router(providers.router, prefix="/api")
 
 
 

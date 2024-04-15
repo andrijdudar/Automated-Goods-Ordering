@@ -50,12 +50,21 @@ class CommentResponseModel(BaseModel):
     id: int
     comment: str
 
+############################################
+
+class ProviderResponse(BaseModel):
+    id: int
+    provider_name: str
+    salesman_name: str
+    salesman_phone: int
+    info: str
 
 
 
 #############################################
 class IngredientModel(BaseModel):
     id: int
+    name: str
     quantity: float
 
 class IngredientResponseModel(BaseModel):
@@ -85,6 +94,8 @@ class PremixResponseModel(BaseModel):
 
 class PremixToDishModel(BaseModel):
     id: int
+    name: str
+    description: str
     quantity: float
 
 
@@ -208,9 +219,27 @@ class CommentModelUpdate(BaseModel):
 class IngOrderModel(BaseModel):
     id: int
     name: str
-    order: int
+    quantity: int
 
 class OrederIngByProvider(BaseModel):
     id: int
     name: str
     order: list[IngOrderModel]
+
+
+################################################
+
+class UsersResponseModel(BaseModel):
+    id: int
+    username: str
+    first_name: str
+    last_name: str
+    email: str
+    information: str
+    role: str
+
+class UserModel(BaseModel):
+    username: str
+    first_name: str
+    role: str
+    information: str
