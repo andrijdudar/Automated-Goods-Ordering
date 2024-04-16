@@ -186,33 +186,43 @@ class UploadTextModel(BaseModel):
     
 #########################################
 
-class CommentDeleteResponse(BaseModel):
-    id: int = 1
-    comment: str = 'My comment'
+# class CommentDeleteResponse(BaseModel):
+#     id: int = 1
+#     comment: str = 'My comment'
 
-    class Config:
-        orm_mode = True
+#     class Config:
+#         orm_mode = True
 
 
-class CommentResponse(BaseModel):
-    id: int = 1
-    comment: str
-    username: UserDb
-    image_id: int = 1
+# class CommentResponse(BaseModel):
+#     id: int = 1
+#     comment: str
+#     username: UserDb
+    
 
-    class Config:
-        orm_mode = True
+#     class Config:
+#         orm_mode = True
 
+
+# class CommentModel(BaseModel):
+#     comment: str = Field(min_length=1, max_length=255)
+#     image_id: int = Field(1, gt=0)
+
+
+# class CommentModelUpdate(BaseModel):
+#     comment: str = Field(min_length=1, max_length=255)
+#     comment_id: int 
 
 class CommentModel(BaseModel):
-    comment: str = Field(min_length=1, max_length=255)
-    image_id: int = Field(1, gt=0)
+    comment: str
+    user_id: int
+    dish_id: int
 
-
-class CommentModelUpdate(BaseModel):
-    comment: str = Field(min_length=1, max_length=255)
-    comment_id: int = Path(ge=1)
-
+class CommentResponeModel(BaseModel):
+    id: int
+    comment: str
+    user_id: int
+    dish_id: int
 
 ################################################
     

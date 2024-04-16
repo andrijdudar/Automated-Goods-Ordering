@@ -1,12 +1,4 @@
-import json
-import uvicorn
-import ngrok
-from icecream import ic
-import os
-
 from dotenv import load_dotenv
-
-from aiohttp import ClientSession
 from fastapi import FastAPI, Request, APIRouter, Depends, status, HTTPException
 from sqlalchemy.orm import Session
 
@@ -26,7 +18,6 @@ async def get_children_by_name(name: str, db: Session = Depends(get_db)):
         result_list = []
         children = category.child
         for child in children:
-            ic(child)
             ch_name = {'name': child.name}
             result_list.append(ch_name)
         return result_list
