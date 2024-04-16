@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/Automated-Goods-Ordering/static/css/main.f855e6bc.css",
+    "main.js": "/Automated-Goods-Ordering/static/js/main.852eebfa.js",
+    "static/js/453.3f5019da.chunk.js": "/Automated-Goods-Ordering/static/js/453.3f5019da.chunk.js",
+    "static/media/logo.svg": "/Automated-Goods-Ordering/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/Automated-Goods-Ordering/index.html",
+    "main.f855e6bc.css.map": "/Automated-Goods-Ordering/static/css/main.f855e6bc.css.map",
+    "main.852eebfa.js.map": "/Automated-Goods-Ordering/static/js/main.852eebfa.js.map",
+    "453.3f5019da.chunk.js.map": "/Automated-Goods-Ordering/static/js/453.3f5019da.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f855e6bc.css",
+    "static/js/main.852eebfa.js"
+  ]
+}
