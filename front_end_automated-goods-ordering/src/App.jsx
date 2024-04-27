@@ -1,6 +1,6 @@
 
-import { Login } from './components/Login/Login';
-import { AppContext, useMyContext } from './Context';
+// import { Login } from './components/Login/Login';
+// import { AppContext, useMyContext } from './Context';
 import { Outlet } from 'react-router-dom';
 import './App.scss';
 import "./components/navBar/NavBar.css";
@@ -14,8 +14,8 @@ import { useEffect } from 'react';
 
 
 const App = () => {
-  const { state } = useMyContext(AppContext);
-  const { formLogin } = state;
+  // const { state } = useMyContext(AppContext);
+  // const { formLogin } = state;
 
   useEffect(() => {
     localStorage.setItem('categories', JSON.stringify(OBG));
@@ -75,9 +75,9 @@ const App = () => {
   //   // localStorage.setItem('few', JSON.stringify([]));
   }, []);
 
-  if (formLogin) {
-    return <Login />;
-  }
+  // if (formLogin) {
+  //   return <Login />;
+  // }
 
   // localStorage.setItem('dishes', JSON.stringify(ALLDISHES));
   // const dishesFromStorage = JSON.parse(localStorage.getItem('dishes'));
