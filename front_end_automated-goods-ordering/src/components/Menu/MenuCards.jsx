@@ -21,9 +21,9 @@ export const MenuCards = () => {
   // const [titleSelectedCategory, setTitleSelectedCategory] = useState('Всі страви');
   // const [localDishesCategory, setLocalDishesCategory] = useState([]);
 
-  useEffect(() => {
+  // useEffect(() => {
     // setLocalDishesCategory(dishesCategory);
-  }, [dishesCategory]);
+  // }, [dishesCategory]);
 
   useEffect(() => {
     // getAllDishes()
