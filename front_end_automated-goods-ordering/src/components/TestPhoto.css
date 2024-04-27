@@ -1,0 +1,62 @@
+.container-photo {
+  margin-bottom: 100px;
+}
+.test-photo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  gap: 50px;
+}
+.file {
+  margin: 0 auto;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.photo {
+  width: 300px;
+  border-radius: 20px;
+}
+.btn-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.btn_cencel,
+.btn_done {
+  color: white;
+  background-color: #282c34;
+  border: 2px solid whitesmoke;
+  border-radius: 500px;
+  width: max-content;
+  height: 40px;
+  padding: 6px 18px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  min-width: 120px;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+.control {
+  gap: 40px;
+}
+.btn_add:hover {
+  color: greenyellow;
+  border-color: greenyellow;
+}
+
+.btn_dell:hover {
+  color: red;
+  border-color: red;
+}
+.btn-disableds {
+  display: none;
+
+}
+

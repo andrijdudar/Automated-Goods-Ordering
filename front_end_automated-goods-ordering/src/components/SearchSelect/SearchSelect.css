@@ -1,0 +1,36 @@
+.searchSelect {
+  /* width: 300px; */
+  max-width: 500px;
+  /* margin: 0; */
+  /* padding: 0; */
+  /* border: 10px solid transparent; */
+  box-sizing: border-box;
+}
+
+.field {
+  position: relative;
+  margin-bottom: 12px;
+}
+
+.display-none {
+  display: none;
+}
+
+.icon-select>i {
+  margin-top: 10px;
+}
+
+.select {
+  max-width: 500px;
+}
+
+.del {
+  color: red;
+  background-color: #14151a;
+  cursor: pointer;
+  position:absolute;
+  font-size: 16px;
+  right:1px;
+  top: 3px;
+  z-index: 1;
+}

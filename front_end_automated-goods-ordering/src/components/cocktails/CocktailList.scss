@@ -1,0 +1,86 @@
+.coctailComtainer {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-content: center;
+  gap: 50px;
+  padding: 50px;
+  border: 2px solid whitesmoke;
+  border-radius: 30px;
+}
+
+.con{
+  display: flex;
+  align-content: center;
+  max-width: 90vh;
+  margin: 0 auto;
+
+  @media (orientation: portrait) {
+  flex-direction: column;
+  }
+}
+.coctailList {
+  width: 300px;
+  padding: 10px;
+
+}
+
+.coctailList__items {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 60px;
+  border: 2px solid whitesmoke;
+  border-radius: 30px;
+  padding: 15px;
+}
+.coctail_name {
+  cursor: pointer;
+}
+.btns {
+  display: flex;
+  gap: 10px;
+}
+.btn {
+  color: white;
+  background-color: #282c34;
+  border: 2px solid whitesmoke;
+  border-radius: 500px;
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+}
+.btn_container {
+  display: flex;
+  justify-content: center;
+}
+.btn_dell-coctail {
+  margin-top: 30px;
+align-self: center;
+  width: 170px;
+  height: 30px;
+}
+details summary::-webkit-details-marker {
+  display: none;
+  cursor: pointer;
+}
+details {
+  list-style-type: none;
+  cursor: pointer;
+}
+
+ol {
+  color: yellowgreen;
+}
+h3 {
+  font-size: 26px;
+  font-weight: bold;
+}
+
+hr {
+  margin: 10px auto;
+}

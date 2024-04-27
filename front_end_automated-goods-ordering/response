@@ -1,0 +1,800 @@
+
+Запити:
+
+GET  # запит на отримання інформації
+
+    url/api/dishes/{id} # {id} - id конкретного обєкту
+        відповідь:   # status-code 200
+            {
+                "id":int,
+                "image_url":str,
+                "image_public_id":str,
+                "dish_name":str,
+                "description":str,
+                "ingredients":[
+                    {
+                        "ingredient_id" : int
+                        "name": str
+                        "quantity": float # кількість яка входить в страву
+                    },
+                    ...
+                ]
+                "premixes":[
+                    {
+                        "id": int
+                        "name": str
+                        "description": str
+                        "quantity": float  # кількість яка входить в страву
+                    },
+                    ...
+                ]
+                "tags":[
+                    {
+                        "id":int,
+                        "name_tag":str
+                    },
+
+                    ...
+                        ],
+                "comments": [
+                    {
+                        id: int,
+                        comment: str
+                    },
+                    ...
+                ]
+                "created_at":datetime | str, # у мене це тип даних - "2024-01-20T12:20:10.289813"
+                "updated_at":datetime | str | null,
+                "stop_list":bool,
+                "dish_to_sold": bool,
+                "category_name":null,
+                "category_id":int
+            }
+    url/api/dishes/ # отримати всі обєкти dishes
+        відпрвідь:  # status-code 200
+            [
+                {
+                "id":int,
+                "image_url":str,
+                "image_public_id":str,
+                "dish_name":str,
+                "description":str,
+                "ingredients":[
+                    {
+                        "ingredient_id" : int
+                        "name": str
+                        "quantity": float # кількість яка входить в страву
+                    },
+                    ...
+                ]
+                "premixes":[
+                    {
+                        "id": int
+                        "name": str
+                        "description": str
+                        "quantity": float  # кількість яка входить в страву
+                    },
+                    ...
+                ]
+                "tags":[
+                    {
+                        "id":int,
+                        "name_tag":str
+                    },
+
+                    ...
+                        ],
+                "comments": [
+                    {
+                        id: int,
+                        comment: str
+                    },
+                    ...
+                ]
+                "created_at":datetime | str, # у мене це тип даних - "2024-01-20T12:20:10.289813"
+                "updated_at":datetime | str | null,
+                "stop_list":bool,
+                "dish_to_sold": bool,
+                "category_name":null,
+                "category_id":int
+            },
+                ...
+            ]
+    url/api/categories/ # отримати всі обєкти categories
+        відпрвідь:  # status-code 200
+            [
+                {
+                    "id": int,
+                    "name": str,
+                    "parent_id":int | null
+                    "child": bool
+                    "dishes": bool
+                },
+                ...
+            ]
+    url/api/tags/ # отримати всі обєкти tags
+        відпрвідь:   # status-code 200
+            [
+                {
+                    "id": int,
+                    "name_tag": str
+                },
+                ...
+            ]
+    url/api/categories/get_dishes/{id} # отримати всі обєкти dishes які належать конкретній категорії
+                                        # {id} - id категорії
+        відповідь: # status-code 200 OK
+            [
+                {
+                "id":int,
+                "image_url":str,
+                "image_public_id":str,
+                "dish_name":str,
+                "description":str,
+                "ingredients":[
+                    {
+                        "ingredient_id" : int
+                        "name": str
+                        "quantity": float # кількість яка входить в страву
+                    },
+                    ...
+                ]
+                "premixes":[
+                    {
+                        "id": int
+                        "name": str
+                        "description": str
+                        "quantity": float  # кількість яка входить в страву
+                    },
+                    ...
+                ]
+                "tags":[
+                    {
+                        "id":int,
+                        "name_tag":str
+                    },
+
+                    ...
+                        ],
+                "comments": [
+                    {
+                        id: int,
+                        comment: str
+                    },
+                    ...
+                ]
+                "created_at":datetime | str, # у мене це тип даних - "2024-01-20T12:20:10.289813"
+                "updated_at":datetime | str | null,
+                "stop_list":bool,
+                "dish_to_sold": bool,
+                "category_name":null,
+                "category_id":int
+            },
+                ...
+            ]
+
+
+    url/api/dishes/stop-list # отримати всі обєкти dishes які є в стоп-листі
+        відпрвідь:  # status-code 200
+            [
+                {
+                "id":int,
+                "image_url":str,
+                "image_public_id":str,
+                "dish_name":str,
+                "description":str,
+                "ingredients":[
+                    {
+                        "ingredient_id" : int
+                        "name": str
+                        "quantity": float # кількість яка входить в страву
+                    },
+                    ...
+                ]
+                "premixes":[
+                    {
+                        "id": int
+                        "name": str
+                        "description": str
+                        "quantity": float  # кількість яка входить в страву
+                    },
+                    ...
+                ]
+                "tags":[
+                    {
+                        "id":int,
+                        "name_tag":str
+                    },
+
+                    ...
+                        ],
+                "comments": [
+                    {
+                        id: int,
+                        comment: str
+                    },
+                    ...
+                ]
+                "created_at":datetime | str, # у мене це тип даних - "2024-01-20T12:20:10.289813"
+                "updated_at":datetime | str | null,
+                "stop_list":bool,
+                "dish_to_sold": bool,
+                "category_name":null,
+                "category_id":int
+            },
+                ...
+            ]
+
+    url/api/dishes/dish_to_sold # отримати всі обєкти dishes які потрібно продати
+        відпрвідь:  # status-code 200
+            [
+                {
+                "id":int,
+                "image_url":str,
+                "image_public_id":str,
+                "dish_name":str,
+                "description":str,
+                "ingredients":[
+                    {
+                        "ingredient_id" : int
+                        "name": str
+                        "quantity": float # кількість яка входить в страву
+                    },
+                    ...
+                ]
+                "premixes":[
+                    {
+                        "id": int
+                        "name": str
+                        "description": str
+                        "quantity": float  # кількість яка входить в страву
+                    },
+                    ...
+                ]
+                "tags":[
+                    {
+                        "id":int,
+                        "name_tag":str
+                    },
+
+                    ...
+                        ],
+                "comments": [
+                    {
+                        id: int,
+                        comment: str
+                    },
+                    ...
+                ]
+                "created_at":datetime | str, # у мене це тип даних - "2024-01-20T12:20:10.289813"
+                "updated_at":datetime | str | null,
+                "stop_list":bool,
+                "dish_to_sold": bool,
+                "category_name":null,
+                "category_id":int
+            },
+                ...
+            ]
+
+
+    url/api/ingredients/ # отримати всі обєкти ingredients
+        відповідь: # status-code 200 OK
+            [
+                {
+                    id: int,
+                    "name": str
+                },
+                ...
+            ]
+
+    url/api/ingredients/{id}
+        відповідь: # status-code 200 OK
+            {
+                "id": int
+                "name": str
+                "stock_minimum": float # мінімальна к-сть яка має бути на залишку
+                "stock_maximum": float # максимальна к-сть яка має бути на залишку
+                "provider_id": int " id постачальника
+                "using": bool # чи використовується інгредіент. False якщо допродаємо і більше не замовляємо
+                "created_at":datetime | str, # у мене це тип даних - "2024-01-20T12:20:10.289813"
+                "updated_at":datetime | str | null,
+            }
+
+    url/api/premixes/ # отримати всі обєкти premixes
+        відповідь: # status-code 200 OK
+            [
+                {
+                    "id": int,
+                    "name": str,
+                },
+                ...
+            ]
+
+    url/api/providers/ # отримати всі обєкти providers
+        відповідь: # status-code 200 OK
+            [
+                {
+                    "id": int,
+                    "provider_name": str,
+                    "salesman_name": str,
+                    "salesman_phone": int
+                    "info": str
+                },
+                ...
+            ]
+
+    url/api/users/ # отримати всі обєкти users
+        відповідь: # status-code 200 OK
+            [
+                {
+                    "id": int,
+                    "username": str,
+                    "first_name": str,
+                    "last_name": str,
+                    "email": str,
+                    "information": str
+                },
+                ...
+            ]
+
+    url/api/ingredients/orders # отримати список замовлень
+        відповідь: # status-code 200 OK
+            [
+                {
+                    id: int #  id постачальника
+                    name: str # імя постачальника
+                    order: [
+                        id: int # id інгредіента
+                        name: str # назва інгредіента
+                        quantity: int # кількість іг  який потрібно замовити
+                    ]
+                },
+                ...
+            ]
+
+
+
+
+
+
+POST  # запит на створення нового обєкту
+    url/api/dishes/create_new_dish     # form-data
+        запит:
+            "name": str
+            "description": str
+            "ingredients": [
+                {
+                    "id": int,
+                    "quantity": float
+                },
+                ...
+            ]
+            "premixes": [
+                {
+                    "id": int,
+                    "quantity": float
+                },
+                ...
+            ]
+            "tags": [
+                {
+                    id: int | null,
+                    name_tag: str | null
+                },
+                ...
+            ]
+            "category": {
+                id: int
+            }
+            "price": int
+            "file": File # безпосередньо фотка
+        відпрвідь:   # status-code 201 Crрeated - повертає новостворений обєкт
+            {
+                "id":int,
+                "image_url":str,
+                "image_public_id":str,
+                "dish_name":str,
+                "description":str,
+                "ingredients":[
+                    {
+                        "ingredient_id" : int
+                        "name": str
+                        "quantity": float # кількість яка входить в страву
+                    },
+                    ...
+                ]
+                "premixes":[
+                    {
+                        "id": int
+                        "name": str
+                        "description": str
+                        "quantity": float  # кількість яка входить в страву
+                    },
+                    ...
+                ]
+                "tags":[
+                    {
+                        "id":int,
+                        "name_tag":str
+                    },
+
+                    ...
+                        ],
+                "comments": [
+                    {
+                        id: int,
+                        comment: str
+                    },
+                    ...
+                ]
+                "created_at":datetime | str, # у мене це тип даних - "2024-01-20T12:20:10.289813"
+                "updated_at":datetime | str | null,
+                "stop_list":bool,
+                "dish_to_sold": bool,
+                "category_name":null,
+                "category_id":int
+            }
+    url/api/categories/add_category     # raw
+        запит:
+            {
+                "name": str,
+                "parent": {
+                    "id": int
+                }   # id категорії для якої цей обєкт буде підкатегорією
+            }
+
+        відпрвідь:  # status-code 201 Crрeated - повертає новостворений обєкт
+            {
+                    "id": int,
+                    "name": str,
+                    "parent_id":int | null
+                    "child": bool
+                    "dishes": bool
+                }
+
+    url/api/premixes/create_premix
+        запит:
+            {
+                "name": str,
+                "ingredients": [
+                    {
+                        "id": int,
+                        "quantity": int
+                    }
+                ],
+                "description": str
+            }
+        відпрвідь:  # status-code 201 Crрeated - повертає новостворений обєкт
+            {
+                "id": int
+                "name": str,
+                "ingredients": [
+                    {
+                        "id": int,
+                        "quantity": int
+                    }
+                ],
+                "description": str
+            }
+
+
+PUT # запит щоб замінити існуюсий обєкт на новий з тим самим id
+    url/api/dishes/update   #form-data
+        запит:
+            id: int
+            "name": str
+            "description": str
+            "ingredients": [
+                {
+                    "id": int,
+                    "quantity": float
+                },
+                ...
+            ]
+            "premixes": [
+                {
+                    "id": int,
+                    "quantity": float
+                },
+                ...
+            ]
+            "tags": [
+                {
+                    id: int | null,
+                    name_tag: str | null
+                },
+                ...
+            ]
+            "category": {
+                id: int
+            }
+            "price": int
+            "file": File # безпосередньо фотка
+        відпрвідь:   # status-code 202 Accepted - повертає оновлений обєкт
+            {
+                "id":int,
+                "image_url":str,
+                "image_public_id":str,
+                "dish_name":str,
+                "description":str,
+                "ingredients":[
+                    {
+                        "ingredient_id" : int
+                        "name": str
+                        "quantity": float # кількість яка входить в страву
+                    },
+                    ...
+                ]
+                "premixes":[
+                    {
+                        "id": int
+                        "name": str
+                        "description": str
+                        "quantity": float  # кількість яка входить в страву
+                    },
+                    ...
+                ]
+                "tags":[
+                    {
+                        "id":int,
+                        "name_tag":str
+                    },
+
+                    ...
+                        ],
+                "comments": [
+                    {
+                        id: int,
+                        comment: str
+                    },
+                    ...
+                ]
+                "dishes_left": int # скільки залишилось стави
+                "created_at":datetime | str, # у мене це тип даних - "2024-01-20T12:20:10.289813"
+                "updated_at":datetime | str | null,
+                "stop_list":Bool,
+                "category_name":null,
+                "category_id":int
+            }
+
+PATCH   # запит щоб змінити в існуюючому обєкті якісь поля
+    url/api/dishes/update_photo  # form-data
+        запит:
+            id: int
+            file: File # безпосередньо фотка
+        відповідь:  # status-code 202 Accepted - повертає оновлений обєкт
+            {
+                "id":int,
+                "image_url":str,
+                "image_public_id":str,
+                "dish_name":str,
+                "description":str,
+                "ingredients":[
+                    {
+                        "ingredient_id" : int
+                        "name": str
+                        "quantity": float # кількість яка входить в страву
+                    },
+                    ...
+                ]
+                "premixes":[
+                    {
+                        "id": int
+                        "name": str
+                        "description": str
+                        "quantity": float  # кількість яка входить в страву
+                    },
+                    ...
+                ]
+                "tags":[
+                    {
+                        "id":int,
+                        "name_tag":str
+                    },
+
+                    ...
+                        ],
+                "comments": [
+                    {
+                        id: int,
+                        comment: str
+                    },
+                    ...
+                ]
+                "dishes_left": int # скільки залишилось стави
+                "created_at":datetime | str, # у мене це тип даних - "2024-01-20T12:20:10.289813"
+                "updated_at":datetime | str | null,
+                "stop_list":Bool,
+                "category_name":null,
+                "category_id":int
+            }
+    url/api/dishes/patch  # raw
+         запит:
+            {
+                id: int
+                name: str | null
+                description: str | null
+                ingredients: [{"id": int, "quantity": float}, ...]
+                premixes: [{"id": int, "quantity": float}, ...]
+                tags: str | null
+                category: {"id": int}
+                price: int | null
+                comment: str | null
+                stop-list: bool
+                dish_to_sold: bool
+            }
+            # поле id обовязкове, інші поля можуть бути null
+            # наприклад якщо  потрібно змінити ціну
+            # то запит буде таким:
+            {
+                "id": "330",
+                "price": 300
+            }
+        відповідь:   # status-code 202 Accepted - повертає оновлений обєкт
+            {
+                "id":int,
+                "image_url":str,
+                "image_public_id":str,
+                "dish_name":str,
+                "description":str,
+                "ingredients":[
+                    {
+                        "ingredient_id" : int
+                        "name": str
+                        "quantity": float # кількість яка входить в страву
+                    },
+                    ...
+                ]
+                "premixes":[
+                    {
+                        "id": int
+                        "name": str
+                        "description": str
+                        "quantity": float  # кількість яка входить в страву
+                    },
+                    ...
+                ]
+                "tags":[
+                    {
+                        "id":int,
+                        "name_tag":str
+                    },
+
+                    ...
+                        ],
+                "comments": [
+                    {
+                        id: int,
+                        comment: str
+                    },
+                    ...
+                ]
+                "created_at":datetime | str, # у мене це тип даних - "2024-01-20T12:20:10.289813"
+                "updated_at":datetime | str | null,
+                "stop_list":bool,
+                "dish_to_sold": bool,
+                "category_name":null,
+                "category_id":int
+            }
+
+    url/api/ingredients/patch
+        запит:
+            {
+                "id": int
+                "stock_minimum": float # мінімальна к-сть яка має бути на залишку
+                "stock_maximum": float # максимальна к-сть яка має бути на залишку
+                "provider_id": int " id постачальника
+                "using": bool # чи використовується інгредіент. False якщо допродаємо і більше не замовляємо
+            }
+        відповідь:   # status-code 202 Accepted - повертає оновлений обєкт
+            {
+                "id": int
+                "name": str
+                "stock_minimum": float # мінімальна к-сть яка має бути на залишку
+                "stock_maximum": float # максимальна к-сть яка має бути на залишку
+                "provider_id": int " id постачальника
+                "using": bool # чи використовується інгредіент. False якщо допродаємо і більше не замовляємо
+                "created_at":datetime | str, # у мене це тип даних - "2024-01-20T12:20:10.289813"
+                "updated_at":datetime | str | null,
+            }
+
+
+    url/api/user/patch
+        запит:
+            {
+                    "id": int,
+                    "username": str,
+                    "first_name": str,
+                    "last_name": str,
+                    "email": str,
+                    "information": str
+                    "role": str
+                }
+        відповідь:
+            {
+                    "id": int,
+                    "username": str,
+                    "first_name": str,
+                    "last_name": str,
+                    "email": str,
+                    "information": str
+                    "role": str
+                }
+
+    url/api/comments/patch
+        запит:
+            {
+                "id": int,
+                "comment": str
+            }
+        відповідь:
+            {
+                "id":int,
+                "image_url":str,
+                "image_public_id":str,
+                "dish_name":str,
+                "description":str,
+                "ingredients":[
+                    {
+                        "ingredient_id" : int
+                        "name": str
+                        "quantity": float # кількість яка входить в страву
+                    },
+                    ...
+                ]
+                "premixes":[
+                    {
+                        "id": int
+                        "name": str
+                        "description": str
+                        "quantity": float  # кількість яка входить в страву
+                    },
+                    ...
+                ]
+                "tags":[
+                    {
+                        "id":int,
+                        "name_tag":str
+                    },
+
+                    ...
+                        ],
+                "comments": [
+                    {
+                        id: int,
+                        comment: str
+                    },
+                    ...
+                ]
+                "created_at":datetime | str, # у мене це тип даних - "2024-01-20T12:20:10.289813"
+                "updated_at":datetime | str | null,
+                "stop_list":bool,
+                "dish_to_sold": bool,
+                "category_name":null,
+                "category_id":int
+            }
+
+DELETE  # запит який видаляє обєкт
+    url/api/dishes/delete/{id}  # видалення страви # {id} - id конкретного обєкту
+        відпрвідь:  # status-code 204 No Content
+
+    url/api/categories/delete/{id}  # видалення категорії # {id} - id конкретного обєкту
+        відпрвідь:  # status-code 204 No Content
+
+    url/api/tags/delete/{id}  # видалення тегу # {id} - id конкретного обєкту
+        відпрвідь:  # status-code 204 No Content
+
+    url/api/comments/delete/{id}  # видалення коментар # {id} - id конкретного обєкту
+        відпрвідь:  # status-code 204 No Content
+
+    url/api/premixess/delete/{id}  # видалення преміксу # {id} - id конкретного обєкту
+        відпрвідь:  # status-code 204 No Content
+
+    url/api/users/delete/{id}  # видалення юзера # {id} - id конкретного обєкту
+        відпрвідь:  # status-code 204 No Content
+
+    url/api/providers/delete/{id}  # видалення постачальника # {id} - id конкретного обєкту
+        відпрвідь:  # status-code 204 No Content
+
+    url/api/comments/delete/{is} # видалення коментаря # {id} - id конкретного обєкту
+        відпрвідь:  # status-code 204 No Content
