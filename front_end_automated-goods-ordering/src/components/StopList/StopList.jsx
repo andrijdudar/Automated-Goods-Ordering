@@ -18,25 +18,25 @@ const StopList = () => {
   useEffect(() => {
     getDishesInStopList()
       .then((res) => {
-        console.log(res);
-        setStopListLS(res);
-        setStopList(res);
+        // console.log(res);
+        // setStopListLS(res);
+        // setStopList(res);
       })
       .catch((err) => console.log(err));
 
     getDishesToBeSold()
       .then((res) => {
-        console.log(res);
-        setDishesToBeSoldLS(res);
-        setDishesToBeSold(res);
+        // console.log(res);
+        // setDishesToBeSoldLS(res);
+        // setDishesToBeSold(res);
       })
       .catch((err) => console.log(err));
 
     getFewDishes()
       .then((res) => {
-        console.log(res);
-        setFewDishesLS(res);
-        setFewDishes(res);
+        // console.log(res);
+        // setFewDishesLS(res);
+        // setFewDishes(res);
       })
       .catch((err) => console.log(err));
   }, []);

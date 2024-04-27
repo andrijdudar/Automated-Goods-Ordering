@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import useStore from "../../StoreZustand";
 import { getAllCategories } from '../../utils/fetch';
 import SearchSelect from '../SearchSelect/SearchSelect';
+import { OBG } from '../../Obgects';
 
 
 function SideBar() {
@@ -22,10 +23,11 @@ function SideBar() {
   useEffect(() => {
     getAllCategories()
       .then((data) => {
-        console.log('categories', data);
-        setCategories(data);
-        localStorage.setItem('categories', JSON.stringify(data));
+        // console.log('categories', data);
+        // setCategories(data);
+        // localStorage.setItem('categories', JSON.stringify(data));
       }).catch(() => {
+        localStorage.setItem('categories', JSON.stringify(OBG));
         const categoriesLS = JSON.parse(localStorage.getItem('categories'));
         setCategories(categoriesLS);
         console.log('error in getAllCategories in SideBar.jsx');
