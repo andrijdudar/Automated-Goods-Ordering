@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import { useLocalStorage } from '../../utils/useLocalStorege';
-import useStore from '../../StoreZustand';
+// import useStore from '../../StoreZustand';
 import './StopList.css';
-import { getDishesInStopList, getDishesToBeSold, getFewDishes } from '../../utils/fetch';
+// import { getDishesInStopList, getDishesToBeSold, getFewDishes } from '../../utils/fetch';
 
 
 const StopList = () => {
@@ -11,35 +11,35 @@ const StopList = () => {
   const [fewDishesLS, setFewDishesLS] = useLocalStorage('fewDishes', []);
   const [dishesToBeSoldLS, setDishesToBeSoldLS] = useLocalStorage('dishesToBeSold', []);
 
-  const setFewDishes = useStore((state) => state.setFewDishes);
-  const setStopList = useStore((state) => state.setStopList);
-  const setDishesToBeSold = useStore((state) => state.setDishesToBeSold);
+  // const setFewDishes = useStore((state) => state.setFewDishes);
+  // const setStopList = useStore((state) => state.setStopList);
+  // const setDishesToBeSold = useStore((state) => state.setDishesToBeSold);
 
-  useEffect(() => {
-    getDishesInStopList()
-      .then((res) => {
+  // useEffect(() => {
+    // getDishesInStopList()
+    //   .then((res) => {
         // console.log(res);
         // setStopListLS(res);
         // setStopList(res);
-      })
-      .catch((err) => console.log(err));
+    //   })
+    //   .catch((err) => console.log(err));
 
-    getDishesToBeSold()
-      .then((res) => {
+    // getDishesToBeSold()
+    //   .then((res) => {
         // console.log(res);
         // setDishesToBeSoldLS(res);
         // setDishesToBeSold(res);
-      })
-      .catch((err) => console.log(err));
+    //   })
+    //   .catch((err) => console.log(err));
 
-    getFewDishes()
-      .then((res) => {
+    // getFewDishes()
+    //   .then((res) => {
         // console.log(res);
         // setFewDishesLS(res);
         // setFewDishes(res);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+      // })
+      // .catch((err) => console.log(err));
+  // }, []);
   return (
     <div className="stopList">
       <h1>Стоп-Лист</h1>

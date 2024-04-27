@@ -26,20 +26,20 @@ export const MenuCards = () => {
   }, [dishesCategory]);
 
   useEffect(() => {
-    getAllDishes()
-      .then((data) => {
+    // getAllDishes()
+    //   .then((data) => {
         // setDishes(data);
         // setDishesCategory(data);
         // // setLocalDishesCategory(data);
         // localStorage.setItem('dishes', JSON.stringify(data));
-      })
-      .catch(() => {
+      // })
+      // .catch(() => {
         localStorage.setItem('dishes', JSON.stringify(ALLDISHES));
         const dishesLS = JSON.parse(localStorage.getItem('dishes'));
         setDishes(dishesLS);
         setDishesCategory(dishesLS);
         // setLocalDishesCategory(dishesLS);
-      });
+      // });
   }, []);
 
 
