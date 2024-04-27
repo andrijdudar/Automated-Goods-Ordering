@@ -5,7 +5,6 @@ import useStore from "../../StoreZustand";
 import './MenuCards.scss';
 import { deleteDish, getAllDishes } from '../../utils/fetch';
 import { Link } from 'react-router-dom';
-import { ALLDISHES } from '../../Obgects';
 // import cn from 'classnames';
 
 export const MenuCards = () => {
@@ -34,7 +33,6 @@ export const MenuCards = () => {
         // localStorage.setItem('dishes', JSON.stringify(data));
       // })
       // .catch(() => {
-        localStorage.setItem('dishes', JSON.stringify(ALLDISHES));
         const dishesLS = JSON.parse(localStorage.getItem('dishes'));
         setDishes(dishesLS);
         setDishesCategory(dishesLS);

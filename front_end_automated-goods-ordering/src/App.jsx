@@ -6,6 +6,8 @@ import './App.scss';
 import "./components/navBar/NavBar.css";
 import { NavBar } from './components/navBar/NavBar';
 import Footer from './components/footer/Footer';
+import { ALLDISHES, OBG } from './Obgects';
+import { useEffect } from 'react';
 // import { useEffect } from 'react';
 // import { getAllCategories, getAllDishes, getAllIngredients, getAllPremixes, getAllProviders, getAllTags, getAllUsers, getDishesInStopList, getDishesToBeSold, getIngredientOrders } from './utils/fetch';
 // import { ALLDISHES, OBG, TAGS } from './Obgects';
@@ -15,7 +17,10 @@ const App = () => {
   const { state } = useMyContext(AppContext);
   const { formLogin } = state;
 
-  // useEffect(() => {
+  useEffect(() => {
+    localStorage.setItem('categories', JSON.stringify(OBG));
+    localStorage.setItem('dishes', JSON.stringify(ALLDISHES));
+
   //   getAllDishes().then((data) => {
   //     localStorage.setItem('dishes', JSON.stringify(data));
   //   }).catch((error) => {
@@ -68,7 +73,7 @@ const App = () => {
   //   });
 
   //   // localStorage.setItem('few', JSON.stringify([]));
-  // }, []);
+  }, []);
 
   if (formLogin) {
     return <Login />;

@@ -27,7 +27,6 @@ function SideBar() {
         // setCategories(data);
         // localStorage.setItem('categories', JSON.stringify(data));
       // }).catch(() => {
-        localStorage.setItem('categories', JSON.stringify(OBG));
         const categoriesLS = JSON.parse(localStorage.getItem('categories'));
         setCategories(categoriesLS);
         console.log('error in getAllCategories in SideBar.jsx');
