@@ -7,6 +7,9 @@ const useStore = create((set) => ({
 
   // dishesFromServer: [],
   // setDishesFromServer: (dishesFromServer) => set({ dishesFromServer }),
+  burger: false,
+  setBurger: (burger) => set({burger }),
+
 
   dishes: [],
   setDish: (dish) => set((state) => ({ dishes: { ...state.dishes, ...dish } })),

@@ -1,43 +1,67 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
 
 .nav {
-  color: white;
   border-bottom: 1px solid black;
   box-shadow: 0 3px 0 rgb(57 57 57);
   font-size: 14px;
   grid-area: header;
+  padding-top: 10px;
+  padding-bottom: 5px;
 }
 
 .nav-h {
   display: flex;
+  justify-content: space-around;
+  padding: 0 20px 0;
+}
+
+.nav-logoburger {
+  display: flex;
+  position: relative;
+  flex-direction: row;
   justify-content: space-between;
-  padding: 0px 30px 0px;
+  align-items: center;
+  z-index: 1;
 }
 
 .logo-text {
   display: block;
+  align-self: center;
+
   color: #ffd3a9;
   font-family: 'Dancing Script';
   font-size: 2.5rem;
   text-align: center;
-  text-shadow: 0 0 6px #f9a407, 0 0 16px #f9a407, 0 0 22px #f9a407,
-    0 0 44px #f9a407, 0 0 62px #f00, 00 11px #f9a407, 0 0 95px #f00;
+  text-shadow: 0 0 6px var(--colorTextOrangeHover), 0 0 16px var(--colorTextOrangeHover), 0 0 22px var(--colorTextOrangeHover),
+    0 0 44px var(--colorTextOrangeHover), 0 0 62px #f00, 00 11px var(--colorTextOrangeHover), 0 0 95px #f00;
   animation: blink 6s infinite;
-  padding-top: 10px;
+  /* padding-top: 10px; */
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 @media screen and (orientation: portrait) {
 
   .nav {
-    /* height: 125px; */
+  height: 61px;
+  padding-top: 0;
+  padding-bottom: 0;
+  transition: all .3s;
   }
+  .nav-active-burger{
+    height:125px;
+    padding-top: 0;
+    padding-bottom: 0;
+    transition: all .3s;
+}
 
   .nav-h {
+    justify-content: space-between;
     flex-direction: column;
   }
 
   .logo-text {
-    padding: 0;
+    /* padding-top: 5px; */
   }
 }
 
@@ -59,7 +83,17 @@
   55%,
   100% {
     color: #fff6a9;
-    text-shadow: 0 0 6px #f9a407, 0 0 16px #f9a407, 0 0 22px #f9a407,
-      0 0 44px #f9a407, 0 0 62px #f00, 0 0 11px #f98a03, 0 0 95px #f00;
+    text-shadow: 0 0 6px var(--colorTextOrangeHover), 0 0 16px var(--colorTextOrangeHover), 0 0 22px var(--colorTextOrangeHover),
+      0 0 44px var(--colorTextOrangeHover), 0 0 62px #f00, 0 0 11px #f98a03, 0 0 95px #f00;
   }
 }
+    .max-content-animation {
+      max-height: 100px;
+      overflow: hidden;
+      transition: max-height 3s ease;
+    }
+
+    .max-content-animation.expanded {
+      max-height: 1000px;
+      /* Довільне значення, яке перевищує потрібний розмір max-content */
+    }

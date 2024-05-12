@@ -1,0 +1,64 @@
+.menuButton {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 6px;
+  width: 3.5em;
+  height: 3.5em;
+  border-radius: 0.5em;
+  border: 1px solid transparent;
+  background-color: transparent;
+  box-shadow: 2px 1px 5px rgba(0, 0, 0, 1),
+    -2px -2px 5px rgba(255, 255, 255, 0.14);
+  transition: all 0.3s ease;
+}
+
+@media (orientation: portrait) {
+  .menuButton {
+    display: flex;
+  }
+}
+
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  appearance: none;
+  display: none;
+  visibility: hidden;
+
+}
+
+.menuButton span {
+  width: 30px;
+  height: 4px;
+  background: #c5c5c5;
+  border-radius: 100px;
+  transition: 0.3s ease;
+}
+
+input[type]:checked~label.menuButton {
+  box-shadow:
+    1px 1px 10px rgba(0, 0, 0, 1),
+    -1px -1px 3px rgba(255, 255, 255, 0.3),
+    inset 1px 1px 8px rgba(0, 0, 0, 2),
+    inset -3px -3px 5px rgba(255, 255, 255, 0.2);
+  transition: all 0.3s;
+}
+
+
+
+input[type]:checked~label>span.top {
+  transform: translateY(290%)rotate(45deg);
+  width: 40px;
+}
+
+input[type]:checked~label>span.bot {
+  transform: translateY(-270%) rotate(-45deg);
+  width: 40px;
+  box-shadow: 0 0 10px #495057;
+}
+
+input[type]:checked~label>span.mid {
+  transform: translateX(-20px);
+  opacity: 0;
+}

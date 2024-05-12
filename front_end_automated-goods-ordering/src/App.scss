@@ -1,7 +1,12 @@
+* {
+  --colorTextOrange: #cd8706;
+  --colorTextOrangeHover: #f9a407;
+}
+
 .App {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 80px 1fr 25px;
+  grid-template-rows: max-content 1fr 25px;
   grid-template-areas:
     "header"
     "content"
@@ -12,14 +17,13 @@
 }
 
 .conten {
-  padding: 3px;
+  // padding: 3px;
   overflow-y: auto;
   grid-area: content;
   overflow-x: hidden;
-
 }
-@media screen and (orientation: portrait) {
+@media (orientation: portrait) {
   .App {
-    grid-template-rows: 125px 1fr 25px;
+    grid-template-rows: auto 1fr 25px;
   }
 }

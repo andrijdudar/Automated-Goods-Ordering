@@ -1,7 +1,7 @@
 .footerr {
   grid-area: footer;
-  color:#cd8706;
+  color: var(--colorTextOrange);
   text-align: center;
-  border-top: 1px solid #cd8706;
+  border-top: 1px solid var(--colorTextOrange);
   height: 15px;
 }

@@ -6,6 +6,7 @@ import useStore from "../../StoreZustand";
 // import { getAllCategories } from '../../utils/fetch';
 import SearchSelect from '../SearchSelect/SearchSelect';
 import { OBG } from '../../Obgects';
+import classNames from 'classnames';
 
 
 function SideBar() {
@@ -19,18 +20,19 @@ function SideBar() {
   const dishesCategory = useStore((state) => state.dishesCategory);
   const dishes = useStore((state) => state.dishes);
   const navigate = useNavigate();
+  const burger = useStore((state) => state.burger);
 
   useEffect(() => {
     // getAllCategories()
     //   .then((data) => {
-        // console.log('categories', data);
-        // setCategories(data);
-        // localStorage.setItem('categories', JSON.stringify(data));
-      // }).catch(() => {
-        const categoriesLS = JSON.parse(localStorage.getItem('categories'));
-        setCategories(categoriesLS);
-        console.log('error in getAllCategories in SideBar.jsx');
-      // });
+    // console.log('categories', data);
+    // setCategories(data);
+    // localStorage.setItem('categories', JSON.stringify(data));
+    // }).catch(() => {
+    const categoriesLS = JSON.parse(localStorage.getItem('categories'));
+    setCategories(categoriesLS);
+    console.log('error in getAllCategories in SideBar.jsx');
+    // });
   }, []);
 
   const handleCards = (categoryId, categoryName) => {
@@ -92,16 +94,9 @@ function SideBar() {
   };
 
   return (
-    <div id="wrapper">
+    <div className={classNames("wrapper", { 'sidebar-nav-active': burger })}>
       <div id="sidebar-wrapper">
-        <ul className="sidebar-nav">
-          <li className="sidebar-item item" onClick={() => setDishesCategory(dishes)}>
-            Всі страви
-          </li>
-          {renderCategories(2)}
-          <li className="sidebar-item item" onClick={() => navigate('/newdish')}>
-            Додати страву
-          </li>
+        <ul className={classNames('sidebar-nav')}>
           <div className='search'>
             <SearchSelect
               options={options}
@@ -110,6 +105,17 @@ function SideBar() {
               path='/'
             />
           </div>
+          <li className="sidebar-item item" onClick={() => {
+            setDishesCategory(dishes);
+            setTitleCategory('Всі страви');
+          }}>
+            Всі страви
+          </li>
+          {renderCategories(2)}
+          <li className="sidebar-item item" onClick={() => navigate('/newdish')}>
+            Додати страву
+          </li>
+
         </ul>
       </div>
     </div>

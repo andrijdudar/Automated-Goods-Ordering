@@ -1,34 +1,57 @@
 .nav-buttons {
   display: flex;
+  /* position: relative; */
   gap: 30px;
   justify-content: space-between;
+  /* align-self: center; */
   font-size: large;
-  margin-top: 15px;
   font-weight: bold;
+  transition: all .3s;
+  margin-bottom: 10px;
+
 }
 
-@media screen and (orientation: portrait) {
+@media (orientation: portrait) {
   .nav-buttons {
+    display: flex;
+    justify-content: space-between;
     font-size: 14px;
-    gap: 5px;
+    transform: scaleY(0.01);
+    opacity: 0;
+    transition: all .3s;
+  }
 
+  .nav-buttons-active {
+    display: flex;
+    /* position: relative; */
+    justify-content: space-between;
+    transform: scaleY(1);
+    /* transform: scale(1.1); */
+    /* transform: scale3d(1, 1, 1); */
+    /* transform: scale3d(1, 1, 1); */
+    transition: all .3s;
+    margin-top: 10px;
+
+    margin-bottom: 10px;
+    opacity: 1;
   }
 }
 
 
 .nav-button-link {
   display: block;
-  color: #cd8706;
+  color: var(--colorTextOrange);
   border: 1px solid transparent;
   border-radius: 25px;
   padding: 10px 15px;
 
 }
+
 .has-border {
-  border: 1px solid #cd8706;
+  border: 1px solid var(--colorTextOrange);
 }
 
 .nav-button-link:hover {
-  color: #f9a407;
-  border-color: #f9a407;
+  color: var(--colorTextOrangeHover);
+  border-color: var(--colorTextOrangeHover);
 }
