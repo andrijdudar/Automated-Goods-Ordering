@@ -84,6 +84,8 @@
     right: 0;
     height: min-content;
     max-height: 85vh;
+    min-width: 360px;
+    max-width: 80%;
     border-radius: 0.5em;
     transform: translateX(110%);
     background-color: var(--backgroundNavBar);
