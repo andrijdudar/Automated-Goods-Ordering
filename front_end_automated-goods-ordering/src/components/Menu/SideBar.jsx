@@ -34,26 +34,6 @@ function SideBar() {
     console.log('error in getAllCategories in SideBar.jsx');
     // });
   }, []);
-
-  const handleCards = (categoryId, categoryName) => {
-    const selectedDishes = dishes.filter(item => item.category_id === categoryId);
-    setDishesCategory(selectedDishes);
-    setActiveCategoryIds([]);
-    setTitleCategory(categoryName);
-  }
-
-  const handleMenuDish = (id, child, categoryName) => {
-    const isActive = activeCategoryIds.includes(id);
-    if (isActive) {
-      setActiveCategoryIds(activeCategoryIds.filter(activeId => activeId !== id));
-    } else {
-      setActiveCategoryIds([...activeCategoryIds, id]);
-      if (!child) {
-        handleCards(id, categoryName);
-      }
-    }
-  }
-
   const convertToOptionsSelect = (obg) => {
     const result = obg.map((value) => ({
       id: value.id,
@@ -77,6 +57,30 @@ function SideBar() {
     );
     setSearchDishes(filteredDishes)
   }, [dishesCategory]);
+
+
+
+  const handleCards = (categoryId, categoryName) => {
+    const selectedDishes = dishes.filter(item => item.category_id === categoryId);
+    setDishesCategory(selectedDishes);
+    setActiveCategoryIds([]);
+    setTitleCategory(categoryName);
+  }
+
+  const handleMenuDish = (id, child, categoryName) => {
+    const isActive = activeCategoryIds.includes(id);
+    if (isActive) {
+      setActiveCategoryIds(activeCategoryIds.filter(activeId => activeId !== id));
+    } else {
+      setActiveCategoryIds([...activeCategoryIds, id]);
+      if (!child) {
+        handleCards(id, categoryName);
+      }
+    }
+  }
+
+
+
 
   const renderCategories = (parentId) => {
     return categories.filter(item => item.parent_id === parentId).map(item => (
