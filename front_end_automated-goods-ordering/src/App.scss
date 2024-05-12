@@ -1,6 +1,7 @@
 * {
   --colorTextOrange: #cd8706;
   --colorTextOrangeHover: #f9a407;
+  --backgroundNavBar: #292c35;
 }
 
 .App {
@@ -12,12 +13,13 @@
     "content"
     "footer";
   height: 100vh;
+  width: 100vw;
   overflow-x: hidden;
   overflow-y: hidden;
 }
 
 .conten {
-  // padding: 3px;
+  position: relative;
   overflow-y: auto;
   grid-area: content;
   overflow-x: hidden;

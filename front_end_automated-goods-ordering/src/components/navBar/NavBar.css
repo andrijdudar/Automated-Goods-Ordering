@@ -5,14 +5,20 @@
   box-shadow: 0 3px 0 rgb(57 57 57);
   font-size: 14px;
   grid-area: header;
-  padding-top: 10px;
-  padding-bottom: 5px;
+  height: 70px;
+  background: var(--backgroundNavBar);
+  transition: all .3s;
 }
 
 .nav-h {
   display: flex;
   justify-content: space-around;
-  padding: 0 20px 0;
+  position: fixed;
+  width: 100vw;
+  z-index: 100;
+  background-color: var(--backgroundNavBar);
+  padding: 0 20px;
+
 }
 
 .nav-logoburger {
@@ -22,47 +28,43 @@
   justify-content: space-between;
   align-items: center;
   z-index: 1;
+  background: var(--backgroundNavBar);
 }
 
 .logo-text {
-  display: block;
-  align-self: center;
-
   color: #ffd3a9;
   font-family: 'Dancing Script';
   font-size: 2.5rem;
-  text-align: center;
-  text-shadow: 0 0 6px var(--colorTextOrangeHover), 0 0 16px var(--colorTextOrangeHover), 0 0 22px var(--colorTextOrangeHover),
-    0 0 44px var(--colorTextOrangeHover), 0 0 62px #f00, 00 11px var(--colorTextOrangeHover), 0 0 95px #f00;
+  text-shadow:
+    0 0 6px var(--colorTextOrangeHover),
+    0 0 16px var(--colorTextOrangeHover),
+    0 0 22px var(--colorTextOrangeHover),
+    0 0 44px var(--colorTextOrangeHover),
+    0 0 62px #f00,
+    00 11px var(--colorTextOrangeHover),
+    0 0 95px #f00;
   animation: blink 6s infinite;
-  /* padding-top: 10px; */
-  margin-top: 0;
-  margin-bottom: 0;
+  margin: 0;
+  padding: 0;
 }
 
 @media screen and (orientation: portrait) {
-
   .nav {
-  height: 61px;
-  padding-top: 0;
-  padding-bottom: 0;
-  transition: all .3s;
-  }
-  .nav-active-burger{
-    height:125px;
-    padding-top: 0;
-    padding-bottom: 0;
+    height: 61px;
     transition: all .3s;
-}
+  }
+
+  .nav-active-burger {
+    height: 125px;
+    transition: all .3s;
+  }
 
   .nav-h {
-    justify-content: space-between;
     flex-direction: column;
   }
 
-  .logo-text {
-    /* padding-top: 5px; */
-  }
+  .nav-logoburger {}
+  .logo-text {}
 }
 
 @keyframes blink {
@@ -87,13 +89,3 @@
       0 0 44px var(--colorTextOrangeHover), 0 0 62px #f00, 0 0 11px #f98a03, 0 0 95px #f00;
   }
 }
-    .max-content-animation {
-      max-height: 100px;
-      overflow: hidden;
-      transition: max-height 3s ease;
-    }
-
-    .max-content-animation.expanded {
-      max-height: 1000px;
-      /* Довільне значення, яке перевищує потрібний розмір max-content */
-    }
