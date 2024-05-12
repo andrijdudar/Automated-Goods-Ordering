@@ -6,7 +6,7 @@
 .App {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: max-content 1fr 25px;
+  grid-template-rows: min-content 1fr 25px;
   grid-template-areas:
     "header"
     "content"
@@ -24,6 +24,6 @@
 }
 @media (orientation: portrait) {
   .App {
-    grid-template-rows: auto 1fr 25px;
+    grid-template-rows: min-content 1fr 25px;
   }
 }

@@ -55,7 +55,7 @@ h1 {
     background: #000;
     top: calc(100% - 50px);
     left: 0;
-    opacity: 0.7;
+    opacity: 0.8;
     transition: all 1s ease-in-out;
     overflow-y: none;
 
@@ -147,6 +147,6 @@ li {
 @media screen and (orientation: portrait) {
   .card {
     width: 90%;
-    height: 500px;
+    // height: 500px;
   }
 }

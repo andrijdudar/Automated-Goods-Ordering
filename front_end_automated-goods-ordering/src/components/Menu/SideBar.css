@@ -2,8 +2,7 @@
   margin: 10px;
   grid-area: side-bar;
   position: sticky;
-  transition: all 3s;
-  /* overflow-Y: auto; */
+  transition: all .3s;
 }
 
 
@@ -26,7 +25,7 @@
   background-color: transparent;
   box-shadow: 2px 1px 5px rgba(0, 0, 0, 1),
     -2px -2px 5px rgba(255, 255, 255, 0.14);
-  transition: all 0.3s ease;
+  transition: all .3s ease;
   padding-left: 30px;
   font-size: 24px;
 
@@ -42,7 +41,7 @@
   /* filter: brightness(90%); */
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 1),
     -4px -4px 5px rgba(255, 255, 255, 0.14);
-  transition: all 0.2s ease;
+  transition: all .3s ease;
 }
 
 /* .active {
@@ -100,29 +99,26 @@
   .wrapper{
     height: 0;
     opacity:0;
-    margin-top: 0;
-    padding-top:0;
-    transition: all 3s;
+    /* margin-top: 0; */
+    /* padding-top:0; */
+    transition: all .3s;
+    transform: translateY(-1000px);
+
+    /* display: none; */
   }
-    .sidebar-nav {
-      /* height: 0; */
-      /* position: relative; */
-      /* top: -1000px; */
-      /* opacity: 0; */
+    /* .sidebar-nav {
       width: 100%;
-      transition: all 1s;
-    }
+      transition: all .3s;
+    } */
 
     .sidebar-nav-active {
-      /* position: relative; */
-      /* top:0; */
-
-      /* transform: translateX(100px); */
-       height: 700px;
+      height: 650px;
       opacity:1;
       margin-top: 10px;
-      /* padding-top:0; */
-      transition: all 1s;
+      transition: all .3s;
+    transform: translateY(0px);
+
+    /* display: block; */
     }
 
   .sidebar-item {
