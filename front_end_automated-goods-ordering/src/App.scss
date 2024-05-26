@@ -6,7 +6,8 @@
 
 .App {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: auto;
+  justify-content: center;
   grid-template-rows: min-content 1fr 25px;
   grid-template-areas:
     "header"
@@ -20,6 +21,10 @@
 
 .conten {
   position: relative;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  width: 1600px;
   overflow-y: auto;
   grid-area: content;
   overflow-x: hidden;
@@ -27,5 +32,8 @@
 @media (orientation: portrait) {
   .App {
     grid-template-rows: min-content 1fr 25px;
+    .conten {
+      width: 100vw;
+    }
   }
 }

@@ -1,12 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useCallback, useEffect, useState } from 'react';
 import './SideBar.css';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import useStore from "../../StoreZustand";
 // import { getAllCategories } from '../../utils/fetch';
 import SearchSelect from '../SearchSelect/SearchSelect';
 import { OBG } from '../../Obgects';
-import classNames from 'classnames';
+import cn from 'classnames';
+import { NavButtons } from '../navBar/NavButtons';
 
 
 function SideBar() {
@@ -98,17 +99,18 @@ function SideBar() {
   };
 
   return (
-    <div className={classNames("wrapper", { 'sidebar-nav-active': burger })}>
+    <div className={cn("wrapper", { 'sidebar-nav-active': burger })}>
       <div id="sidebar-wrapper">
-        <ul className={classNames('sidebar-nav')}>
-          <div className='search'>
-            <SearchSelect
-              options={options}
-              updateOptions={updateOptions}
-              placeholder='Пошук страви'
-              path='/'
-            />
-          </div>
+        <div className='search'>
+          <SearchSelect
+            options={options}
+            updateOptions={updateOptions}
+            placeholder='Пошук страви'
+            path='/'
+          />
+        </div>
+        <ul className={cn('sidebar-nav')}>
+
           <li className="sidebar-item item" onClick={() => {
             setDishesCategory(dishes);
             setTitleCategory('Всі страви');

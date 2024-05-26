@@ -1,23 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
 
 .nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-bottom: 1px solid black;
   box-shadow: 0 3px 0 rgb(57 57 57);
   font-size: 14px;
   grid-area: header;
   height: 70px;
+  width: 100vw;
   background: var(--backgroundNavBar);
-  transition: all .3s;
+  /* transition: all .3s; */
 }
 
 .nav-h {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   position: fixed;
   width: 100vw;
   z-index: 100;
   background-color: var(--backgroundNavBar);
-  padding: 0 20px;
+  padding: 0 50px;
 
 }
 
@@ -50,21 +54,26 @@
 
 @media screen and (orientation: portrait) {
   .nav {
-    height: 61px;
-    transition: all .3s;
+    height: 71px;
   }
 
   .nav-active-burger {
-    height: 125px;
-    transition: all .3s;
+    height: 135px;
   }
 
   .nav-h {
+    display: flex;
     flex-direction: column;
+    justify-content: flex-start;
+    padding: 0 20px;
   }
 
-  .nav-logoburger {}
-  .logo-text {}
+  .nav-logoburger {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .logo-text {
+}
 }
 
 @keyframes blink {

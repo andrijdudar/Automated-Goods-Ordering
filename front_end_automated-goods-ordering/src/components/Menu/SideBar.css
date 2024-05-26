@@ -13,6 +13,7 @@
 
 #sidebar-wrapper {
   display: flex;
+  flex-direction: column;
   align-items: center;
   grid-area: side-bar;
   width: 100%;

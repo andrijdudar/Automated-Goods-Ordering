@@ -12,15 +12,6 @@ h1 {
   font-size: 2.5rem;
 }
 
-@media screen and (orientation: portrait) {
-  .menuCards {
-    border-radius: 25px;
-    border-left: none;
-    box-shadow: none;
-    // box-shadow: 0 -3px 3px rgb(187, 126, 12);
-  }
-}
-
 .cards {
   display: flex;
   flex-wrap: wrap;
@@ -28,7 +19,7 @@ h1 {
   gap: 20px;
   // padding-left: 45px;
   padding-top: 20px;
-  width: 100%;
+  // width: 100%;
 }
 
 .card {
@@ -141,12 +132,28 @@ li {
 .btn-card > button {
   display: block;
 }
-@media screen and (orientation: portrait) {
+@media screen and (max-width: 640px) {
   .menuCards {
-  padding-top: 0;
+    border-radius: 25px;
+    border-left: none;
+    box-shadow: none;
+    padding-top: 0;
+
+
   }
   .card {
-    width: 90%;
-    // height: 500px;
+      width: 90vw;
+    }
+}
+
+@media screen and (min-width: 640px) {
+  .cards {
+    width: 100%;
+    gap: 50px;
+
+  }
+  .card {
+    width: 320px;
+    height: 450px;
   }
 }
