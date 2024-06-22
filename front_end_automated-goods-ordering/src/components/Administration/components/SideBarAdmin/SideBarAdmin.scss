@@ -61,7 +61,7 @@ summary::before {
 
 .sideBarAdminDetails[open]::details-content {
   block-size: auto;
-  block-size: calc-size(auto);
+  // block-size: calc-size(auto);
 }
 
 // summary::marker {

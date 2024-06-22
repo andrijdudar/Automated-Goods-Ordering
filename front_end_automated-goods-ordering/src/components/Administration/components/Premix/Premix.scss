@@ -98,7 +98,7 @@
 
     .detailsPremix[open]::details-content {
       block-size: auto;
-      block-size: calc-size(auto);
+      // block-size: calc-size(auto);
     }
   }
   .searchPremixIngredient {
