@@ -132,6 +132,7 @@ export function Premix() {
 
   const updateOptionsForm = useCallback((options) => {
     setSearchIngredients(filteredItems(ingredients, optionsForm));
+    console.log(searchIngredients);
   }, [ingredients]);
 
 
@@ -185,17 +186,17 @@ export function Premix() {
                       ))}
                     </ul>
 
-                      <button
-                        type='button'
-                        onClick={() => {
-                          setEditPremix(!editPremix);
-                          getAllIngredients().then((res) => {
-                            setIngredients(res);
-                          });
-                        }}
-                      >
-                        Редагувати
-                      </button>
+                    <button
+                      type='button'
+                      onClick={() => {
+                        setEditPremix(!editPremix);
+                        getAllIngredients().then((res) => {
+                          setIngredients(res);
+                        });
+                      }}
+                    >
+                      Редагувати
+                    </button>
                   </div>
                 ) : (
                   // <form onSubmit={handleSubmit}>
@@ -230,57 +231,57 @@ export function Premix() {
                   //     ))}
                   //   </ul>
                   //   <button type='submit'>Відправити</button>
-                    // </form>
-                    <form onSubmit={handleSubmit}>
-                      <div className='field'>
-                        <label className='label'>Назва:</label>
-                        <div className='control'>
-                          <input
-                            type="text"
-                            name="name"
-                            className="input"
-                            value={formData.name}
-                            onChange={handleChange}
-                          />
-                        </div>
-                      </div>
-                      <div className='field'>
-                        <label className='label'>Опис:</label>
-                        <div className='control'>
-                          <textarea
-                            name="description"
-                            className="textarea"
-                            value={formData.description}
-                            onChange={handleChange}
-                          />
-                        </div>
-                      </div>
-                      <div className='field'>
-                        <label className='label'>Інгредієнти:</label>
-                        <SearchSelect
-                          options={optionsForm}
-                          updateOptions={updateOptionsForm}
-                          placeholder='Пошук інгредієнтів...'
-                          selectOpen={true}
-                          path='/'
-                          onSelect={handleIngredientSelect}
+                  // </form>
+                  <form onSubmit={handleSubmit}>
+                    <div className='field'>
+                      <label className='label'>Назва:</label>
+                      <div className='control'>
+                        <input
+                          type="text"
+                          name="name"
+                          className="input"
+                          value={formData.name}
+                          onChange={handleChange}
                         />
-                        {selectedIngredients.map(ingredient => (
-                          <div key={ingredient.ingredient.id} className='field'>
-                            <label className='label'>{ingredient.ingredient.name} - {ingredient.ingredient.measure}</label>
-                            <div className='control'>
-                              <input
-                                type="number"
-                                className="input"
-                                value={ingredient.quantity}
-                                onChange={(e) => handleIngredientQuantityChange(ingredient.ingredient.id, parseFloat(e.target.value))}
-                              />
-                            </div>
-                          </div>
-                        ))}
                       </div>
-                      <button type="submit" className='button is-primary'>Відправити</button>
-                    </form>
+                    </div>
+                    <div className='field'>
+                      <label className='label'>Опис:</label>
+                      <div className='control'>
+                        <textarea
+                          name="description"
+                          className="textarea"
+                          value={formData.description}
+                          onChange={handleChange}
+                        />
+                      </div>
+                    </div>
+                    <div className='field'>
+                      <label className='label'>Інгредієнти:</label>
+                      <SearchSelect
+                        options={optionsForm}
+                        updateOptions={updateOptionsForm}
+                        placeholder='Пошук інгредієнтів...'
+                        selectOpen={true}
+                        path='/'
+                        onSelect={handleIngredientSelect}
+                      />
+                      {selectedIngredients.map(ingredient => (
+                        <div key={ingredient.ingredient.id} className='field'>
+                          <label className='label'>{ingredient.ingredient.name} - {ingredient.ingredient.measure}</label>
+                          <div className='control'>
+                            <input
+                              type="number"
+                              className="input"
+                              value={ingredient.quantity}
+                              onChange={(e) => handleIngredientQuantityChange(ingredient.ingredient.id, parseFloat(e.target.value))}
+                            />
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    <button type="submit" className='button is-primary'>Відправити</button>
+                  </form>
                 )}
               </details>
             </li>
