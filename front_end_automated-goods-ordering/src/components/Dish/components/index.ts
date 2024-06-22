@@ -1,0 +1,1 @@
+export {DishDetails} from './DishDetails';

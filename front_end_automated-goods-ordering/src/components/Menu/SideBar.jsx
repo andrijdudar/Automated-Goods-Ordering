@@ -1,62 +1,57 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import './SideBar.css';
-import { NavLink, useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import useStore from "../../StoreZustand";
-// import { getAllCategories } from '../../utils/fetch';
-import SearchSelect from '../SearchSelect/SearchSelect';
-import { OBG } from '../../Obgects';
+import SearchSelect from '../utils/SearchSelect/SearchSelect';
 import cn from 'classnames';
-import { NavButtons } from '../navBar/NavButtons';
+import { getAllCategories } from '../../utils/fetch';
+import { Loaderr } from '../utils/Loader/Loaderr';
+import { useLocation } from 'react-router-dom';
+import { convertToOptionsSelect, filteredItems } from '../utils/SearchSelect/SearchUtils';
 
 
 function SideBar() {
   const [activeCategoryIds, setActiveCategoryIds] = useState([]);
-  const setDishesCategory = useStore((state) => state.setDishesCategory);
-  // const searchDishes = useStore((state) => state.searchDishes);
-  const setSearchDishes = useStore((state) => state.setSearchDishes);
-  const setCategories = useStore((state) => state.setCategories);
-  const setTitleCategory = useStore((state) => state.setTitleCategory);
+
   const categories = useStore((state) => state.categories);
+  const setCategories = useStore((state) => state.setCategories);
+
   const dishesCategory = useStore((state) => state.dishesCategory);
+  const setDishesCategory = useStore((state) => state.setDishesCategory);
+
+  const setSearchDishes = useStore((state) => state.setSearchDishes);
+
+  const setTitleCategory = useStore((state) => state.setTitleCategory);
   const dishes = useStore((state) => state.dishes);
-  const navigate = useNavigate();
+
   const burger = useStore((state) => state.burger);
+  const setBurger = useStore((state) => state.setBurger);
+
+  const [loading, setLoading] = useState(false);
+
+  const location = useLocation();
 
   useEffect(() => {
-    // getAllCategories()
-    //   .then((data) => {
-    // console.log('categories', data);
-    // setCategories(data);
-    // localStorage.setItem('categories', JSON.stringify(data));
-    // }).catch(() => {
-    const categoriesLS = JSON.parse(localStorage.getItem('categories'));
-    setCategories(categoriesLS);
-    console.log('error in getAllCategories in SideBar.jsx');
-    // });
+    setLoading(true);
+    getAllCategories()
+      .then((data) => {
+        setCategories(data);
+        localStorage.setItem('categories', JSON.stringify(data));
+      }).catch(() => {
+        const categoriesLS = JSON.parse(localStorage.getItem('categories'));
+        setCategories(categoriesLS);
+        console.log('error in getAllCategories in SideBar.jsx');
+        alert('error in getAllCategories in SideBar.jsx');
+      })
+      .finally(() => { setLoading(false); });
   }, []);
-  const convertToOptionsSelect = (obg) => {
-    const result = obg.map((value) => ({
-      id: value.id,
-      value: value.dish_name,
-    }))
-    return result;
-  };
-
-  useEffect(() => {
-    setSearchDishes(dishesCategory);
-    setOptions(convertToOptionsSelect(dishesCategory));
-  }, [dishesCategory]);
 
 
-  const [options, setOptions] = useState(convertToOptionsSelect(dishesCategory));
+  const options = useMemo(() => convertToOptionsSelect(dishesCategory), [dishesCategory]);
 
   const updateOptions = useCallback((options) => {
-    const dishCategory = dishesCategory;
-    const filteredDishes = dishCategory.filter(dish =>
-      options.some(item => item.id === dish.id && item.value === dish.dish_name)
-    );
-    setSearchDishes(filteredDishes)
+    setSearchDishes(filteredItems(dishesCategory, options));
   }, [dishesCategory]);
 
 
@@ -74,14 +69,13 @@ function SideBar() {
       setActiveCategoryIds(activeCategoryIds.filter(activeId => activeId !== id));
     } else {
       setActiveCategoryIds([...activeCategoryIds, id]);
+      console.log(activeCategoryIds);
       if (!child) {
         handleCards(id, categoryName);
+        setBurger(false);
       }
     }
   }
-
-
-
 
   const renderCategories = (parentId) => {
     return categories.filter(item => item.parent_id === parentId).map(item => (
@@ -99,31 +93,37 @@ function SideBar() {
   };
 
   return (
-    <div className={cn("wrapper", { 'sidebar-nav-active': burger })}>
-      <div id="sidebar-wrapper">
-        <div className='search'>
-          <SearchSelect
-            options={options}
-            updateOptions={updateOptions}
-            placeholder='Пошук страви'
-            path='/'
-          />
-        </div>
-        <ul className={cn('sidebar-nav')}>
-
-          <li className="sidebar-item item" onClick={() => {
-            setDishesCategory(dishes);
-            setTitleCategory('Всі страви');
-          }}>
-            Всі страви
-          </li>
-          {renderCategories(2)}
-          <li className="sidebar-item item" onClick={() => navigate('/newdish')}>
-            Додати страву
-          </li>
-
-        </ul>
+    <div className={cn("wrapper",
+      { 'wrapper-open': burger && location.pathname === '/menu' },
+    )}>
+      <div className='search'>
+        <SearchSelect
+          options={options}
+          updateOptions={updateOptions}
+          placeholder='Пошук страви'
+          // selectOpen={true}
+          path='/'
+        />
       </div>
+      {loading ? (
+        <Loaderr />
+      ) : (
+        <div id="sidebar-wrapper">
+          <ul className={cn('sidebar-nav')}>
+
+            <li className="sidebar-item item" onClick={() => {
+              setDishesCategory(dishes);
+              setTitleCategory('Всі страви');
+              setBurger(false);
+            }}>
+              Всі страви
+            </li>
+
+            {renderCategories(2)}
+          </ul>
+        </div>
+      )}
+
     </div>
   );
 }

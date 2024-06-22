@@ -1,0 +1,7 @@
+..settingsIcon {
+  cursor: pointer;
+}
+
+.settingsIcon:hover {
+  transform: scale(1.1);
+}

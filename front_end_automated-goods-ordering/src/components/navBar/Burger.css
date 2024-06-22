@@ -18,7 +18,14 @@
   .menuButton {
     display: flex;
   }
+  .burger {
+    display: none;
+  }
+  .burger-visible {
+    display: block;
+  }
 }
+
 
 input[type="checkbox"] {
   -webkit-appearance: none;

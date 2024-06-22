@@ -21,58 +21,58 @@ const App = () => {
     localStorage.setItem('categories', JSON.stringify(OBG));
     localStorage.setItem('dishes', JSON.stringify(ALLDISHES));
 
-  //   getAllDishes().then((data) => {
-  //     localStorage.setItem('dishes', JSON.stringify(data));
-  //   }).catch((error) => {
-  //     localStorage.setItem('dishes', JSON.stringify(ALLDISHES));
-  //   });
+    //   getAllDishes().then((data) => {
+    //     localStorage.setItem('dishes', JSON.stringify(data));
+    //   }).catch((error) => {
+    //     localStorage.setItem('dishes', JSON.stringify(ALLDISHES));
+    //   });
 
-  //   getAllCategories()
-  //     .then((data) => {
-  //       localStorage.setItem('categories', JSON.stringify(data));
-  //     })
-  //     .catch((error) => {
-  //       localStorage.setItem('categories', JSON.stringify(OBG));
-  //     });
+    //   getAllCategories()
+    //     .then((data) => {
+    //       localStorage.setItem('categories', JSON.stringify(data));
+    //     })
+    //     .catch((error) => {
+    //       localStorage.setItem('categories', JSON.stringify(OBG));
+    //     });
 
-  //   getAllTags()
-  //     .then((data) => {
-  //       localStorage.setItem('tags', JSON.stringify(data));
-  //     })
-  //     .catch((error) => {
-  //       localStorage.setItem('tags', JSON.stringify(TAGS));
-  //     })
-  //     ;
+    //   getAllTags()
+    //     .then((data) => {
+    //       localStorage.setItem('tags', JSON.stringify(data));
+    //     })
+    //     .catch((error) => {
+    //       localStorage.setItem('tags', JSON.stringify(TAGS));
+    //     })
+    //     ;
 
-  //   getAllIngredients().then((data) => {
-  //     localStorage.setItem('ingredients', JSON.stringify(data));
-  //   });
+    //   getAllIngredients().then((data) => {
+    //     localStorage.setItem('ingredients', JSON.stringify(data));
+    //   });
 
-  //   getAllPremixes().then((data) => {
-  //     localStorage.setItem('premixes', JSON.stringify(data));
-  //   });
+    //   getAllPremixes().then((data) => {
+    //     localStorage.setItem('premixes', JSON.stringify(data));
+    //   });
 
-  //   getAllProviders().then((data) => {
-  //     localStorage.setItem('providers', JSON.stringify(data));
-  //   });
+    //   getAllProviders().then((data) => {
+    //     localStorage.setItem('providers', JSON.stringify(data));
+    //   });
 
-  //   getAllUsers().then((data) => {
-  //     localStorage.setItem('users', JSON.stringify(data));
-  //   });
+    //   getAllUsers().then((data) => {
+    //     localStorage.setItem('users', JSON.stringify(data));
+    //   });
 
-  //   getIngredientOrders().then((data) => {
-  //     localStorage.setItem('orders', JSON.stringify(data));
-  //   });
+    //   getIngredientOrders().then((data) => {
+    //     localStorage.setItem('orders', JSON.stringify(data));
+    //   });
 
-  //   getDishesInStopList().then((data) => {
-  //     localStorage.setItem('stop-list', JSON.stringify(data));
-  //   });
+    //   getDishesInStopList().then((data) => {
+    //     localStorage.setItem('stop-list', JSON.stringify(data));
+    //   });
 
-  //   getDishesToBeSold().then((data) => {
-  //     localStorage.setItem('dish_to_sold', JSON.stringify(data));
-  //   });
+    //   getDishesToBeSold().then((data) => {
+    //     localStorage.setItem('dish_to_sold', JSON.stringify(data));
+    //   });
 
-  //   // localStorage.setItem('few', JSON.stringify([]));
+    //   // localStorage.setItem('few', JSON.stringify([]));
   }, []);
 
   // if (formLogin) {
@@ -115,7 +115,7 @@ const App = () => {
   return (
     <div className="App">
       <NavBar />
-      <div className='conten'>
+      <div className="conten">
         <Outlet />
       </div>
       <Footer />

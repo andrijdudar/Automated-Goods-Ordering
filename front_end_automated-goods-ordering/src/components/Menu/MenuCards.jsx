@@ -3,17 +3,25 @@
 import { useEffect, useState } from 'react';
 import useStore from "../../StoreZustand";
 import './MenuCards.scss';
-import { deleteDish, getAllDishes } from '../../utils/fetch';
+import { getAllDishes, patchDish } from '../../utils/fetch';
 import { Link } from 'react-router-dom';
+import listIcon from '../../img/ListIconsolid.svg';
+import tableIcon from '../../img/ListIconlarge.svg';
+import cn from 'classnames';
+import { Loaderr } from '../utils/Loader/Loaderr';
 // import cn from 'classnames';
 
 export const MenuCards = () => {
   const setDishesCategory = useStore((state) => state.setDishesCategory);
-  const dishesCategory = useStore((state) => state.dishesCategory);
+  // const dishesCategory = useStore((state) => state.dishesCategory);
   const setDishes = useStore((state) => state.setDishes);
   const [currentCardId, setCurrentCardId] = useState(null);
   const titleCategory = useStore((state) => state.titleCategory);
   const searchDishes = useStore((state) => state.searchDishes);
+  const setSearchDishes = useStore((state) => state.setSearchDishes);
+  const view = useStore((state) => state.view);
+  const setView = useStore((state) => state.setView);
+const [loader, setLoader] = useState(false)
 
   // const setTitleCategory = useStore((state) => state.setTitleCategory);
 
@@ -21,23 +29,28 @@ export const MenuCards = () => {
   // const [localDishesCategory, setLocalDishesCategory] = useState([]);
 
   // useEffect(() => {
-    // setLocalDishesCategory(dishesCategory);
+  // setLocalDishesCategory(dishesCategory);
   // }, [dishesCategory]);
 
   useEffect(() => {
-    // getAllDishes()
-    //   .then((data) => {
-        // setDishes(data);
+    setLoader(true);
+    getAllDishes()
+      .then((data) => {
+        setDishes(data);
+        setSearchDishes(data);
+        setDishesCategory(data);
+
         // setDishesCategory(data);
-        // // setLocalDishesCategory(data);
+        // setLocalDishesCategory(data);
         // localStorage.setItem('dishes', JSON.stringify(data));
-      // })
-      // .catch(() => {
-        const dishesLS = JSON.parse(localStorage.getItem('dishes'));
-        setDishes(dishesLS);
-        setDishesCategory(dishesLS);
+      })
+      .catch(() => {
+        // const dishesLS = JSON.parse(localStorage.getItem('dishes'));
+        // setDishes(dishesLS);
+        // setDishesCategory(dishesLS);
         // setLocalDishesCategory(dishesLS);
-      // });
+      })
+      .finally(() => setLoader(false));
   }, []);
 
 
@@ -52,34 +65,60 @@ export const MenuCards = () => {
 
   return (
     <div className="menuCards">
+      {loader ? (
+        <Loaderr />
+      ):(
       <div>
-        <h1>
-          {titleCategory.charAt(0).toUpperCase() + titleCategory.slice(1)}
-        </h1>
-      </div>
+        <div className='cardsHeader'>
+          <h1>
+            {titleCategory.charAt(0).toUpperCase() + titleCategory.slice(1)}
+          </h1>
+          <div className='view'>
+            <button type='button' onClick={() => setView(!view)}>
+              {view ? (
+                <img src={listIcon} alt="card" />
+              ) : (
+                <img src={tableIcon} alt="card" />
+              )}
+            </button>
+          </div>
+        </div>
 
-      <div className="cards">
-        {searchDishes.map(card => {
-          const currentCardIngredients = card.ingredients.split(', ');
-          return (
+
+        <div className="cards">
+          {searchDishes.map(card => (
             <div
               key={card.id}
-              className={`card ${currentCardId === card.id ? 'active' : ''}`}
+              className={cn('card',
+                { 'cardList': !view },
+                { 'cardTable': view },
+                { 'active': currentCardId === card.id }
+              )}
               onClick={() => toggleCard(card)}
               style={{
                 backgroundImage: card.image_url && `url(${card.image_url})`
               }}
             >
+
               <div className="card__content">
                 <div className="card__content-inner">
                   <div className="card__title">{card.dish_name}</div>
                   <div className="card__description">
                     <ul className="ingredients">
                       <li>
+                        <h2>Склад:</h2>
                         <ul>
-                          {currentCardIngredients.map((item, index) => (
+                          {card.dish_ingredients.map((item, index) => (
                             <>
-                              <li key={index}>{item}</li>
+                              <li key={index}>{`${item.ingredient.name} - ${item.quantity} ${item.ingredient.measure}`}</li>
+                              <hr />
+                            </>
+                          ))}
+                        </ul>
+                        <ul>
+                          {card.dish_premixes.map((item, index) => (
+                            <>
+                              <li key={index}>{`${item.premix.name} - ${item.quantity}`}</li>
                               <hr />
                             </>
                           ))}
@@ -88,18 +127,39 @@ export const MenuCards = () => {
 
                     </ul>
                     <div className="description">
+                      <h2>Опис:</h2>
                       {card.description}
                     </div>
                     <div className="btn-card">
-                      <Link to='/newdish' className="button is-link is-rounded is-hover">
-                        Редагувати
+                      <Link to={`/detailsDish/${card.id}`} className="button is-info is-outlined is-rounded is-hover">
+                        Детальніше
                       </Link>
-                      <button
-                        className="button is-danger is-rounded is-hover"
-                        onClick={() => deleteDish(card.id)}
+
+                      {!!card.dish_to_sold ? (
+                        <button
+                          className="button is-success is-outlined is-rounded is-hover"
+                          onClick={() => patchDish({ id: card.id, dish_to_sold: false })}
+                        >
+                          Видалити з пріоритетних
+                        </button>) : (
+                        <button
+                          className="button is-warning is-outlined is-rounded is-hover"
+                          onClick={() => patchDish({ id: card.id, dish_to_sold: true })}
+                        >
+                          Додати в пріоритет
+                        </button>)}
+                      {!!card.stop_list ? (<button
+                        className="button is-danger is-outlined is-rounded is-hover"
+                        onClick={() => patchDish({ id: card.id, stop_list: false })}
                       >
-                        Видалити
-                      </button>
+                        Видалити з стоп листа
+                      </button>) : (
+                        <button
+                          className="button is-danger is-outlined is-rounded is-hover"
+                          onClick={() => patchDish({ id: card.id, stop_list: true })}
+                        >
+                          Додати в стоп лист
+                        </button>)}
                     </div>
                   </div>
 
@@ -107,8 +167,9 @@ export const MenuCards = () => {
               </div>
             </div>
           )
-        })}
-      </div>
+          )}
+        </div>
+      </div >)}
     </div>
   );
 };

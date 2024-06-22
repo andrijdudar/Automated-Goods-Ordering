@@ -7,12 +7,13 @@
 .App {
   display: grid;
   grid-template-columns: auto;
-  justify-content: center;
+  // justify-content: center;
   grid-template-rows: min-content 1fr 25px;
   grid-template-areas:
     "header"
     "content"
     "footer";
+    // gap:5px;
   height: 100vh;
   width: 100vw;
   overflow-x: hidden;
@@ -24,7 +25,7 @@
   display: flex;
   justify-content: center;
   margin: 0 auto;
-  width: 1600px;
+  max-width: 1600px;
   overflow-y: auto;
   grid-area: content;
   overflow-x: hidden;
@@ -34,6 +35,7 @@
     grid-template-rows: min-content 1fr 25px;
     .conten {
       width: 100vw;
+      height: 100%;
     }
   }
 }

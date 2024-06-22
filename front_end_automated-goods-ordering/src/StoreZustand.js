@@ -8,7 +8,7 @@ const useStore = create((set) => ({
   // dishesFromServer: [],
   // setDishesFromServer: (dishesFromServer) => set({ dishesFromServer }),
   burger: false,
-  setBurger: (burger) => set({burger }),
+  setBurger: (burger) => set({ burger }),
 
 
   dishes: [],
@@ -34,15 +34,25 @@ const useStore = create((set) => ({
   fewDishes: [],
   setFewDishes: (fewDishes) => set({ fewDishes }),
 
-
   dish_to_sold: [],
   setDishToSold: (dish_to_sold) => set({ dish_to_sold }),
 
   ingredients: [],
   setIngredients: (ingredients) => set({ ingredients }),
+  updateIngredient: (id, updatedData) => set((state) => ({
+    ingredients: state.ingredients.map((ingredient) =>
+      ingredient.id === id ? { ...ingredient, ...updatedData } : ingredient
+    ),
+  })),
+
 
   premixes: [],
   setPremixes: (premixes) => set({ premixes }),
+  updatePremix: (id, updatedData) => set((state) => ({
+    premixes: state.premixes.map((premix) =>
+      premix.id === id ? { ...premix, ...updatedData } : premix
+    ),
+  })),
 
   providers: [],
   setProviders: (providers) => set({ providers }),
@@ -52,6 +62,12 @@ const useStore = create((set) => ({
 
   orders: [],
   setOrders: (orders) => set({ orders }),
+
+  view: true,
+  setView: (view) => set({ view }),
+
+  options: [],
+  setOptions: (options) => set({ options }),
 }));
 
 export default useStore;

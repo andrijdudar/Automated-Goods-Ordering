@@ -1,0 +1,14 @@
+.Administration {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  height: 100%;
+  @media (orientation: portrait) {
+    flex-direction: column;
+  }
+  
+}
+.SideBarAdminContent {
+  padding: 10px 20px 0 20px;
+  margin: 0 auto;
+}

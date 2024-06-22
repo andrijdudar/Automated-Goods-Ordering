@@ -3106,6 +3106,7 @@ export const ALLDISHES = [
     "updated_at": "2023-12-05T11:41:27.932804",
     "stop_list": null,
     "category_name": null,
+    "dish_to_sold": true,
     "category_id": 7
   },
   {

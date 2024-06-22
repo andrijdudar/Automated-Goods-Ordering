@@ -1,0 +1,108 @@
+.premixList {
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+  border-radius: 10px;
+  width: 100%;
+
+
+  h2 {
+    text-align: center;
+    font-size: 2rem;
+    color: var(--colorTextOrangeHover);
+  }
+  .premixSearch {
+    margin: 20px auto;
+
+  }
+  .premixLi {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+
+    input,
+    select {
+      padding: 5px 10px;
+      text-align: center;
+      border-radius: 25px;
+      background-color: var(--colorTextOrangeHover);
+    }
+  }
+
+  .ul {
+      width: 500px;
+
+    list-style-type: none;
+    padding: 0;
+    @media (orientation: portrait) {
+      width: 350px;
+    }
+
+    details {
+      margin-bottom: 20px;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 1),
+        -2px -2px 5px rgba(255, 255, 255, 0.14);
+      color: var(--colorTextOrangeHover);
+      font-size: 14px;
+      transition: all 0.2s ease;
+      width: 100%;
+
+      @media (orientation: portrait) {
+      width: 350px;
+      }
+      &:hover {
+        scale: 1.01;
+        box-shadow: 3px 3px 5px rgba(0, 0, 0, 1),
+          -3px -3px 5px rgba(255, 255, 255, 0.14);
+      }
+
+      strong {
+        display: inline-block;
+        font-size: 14px;
+        font-weight: bold;
+      }
+
+      summary {
+        padding-inline: 2rem;
+        position: relative;
+      }
+
+      summary::marker {
+        content: none;
+      }
+
+      summary::before {
+        content: "▶";
+        position: absolute;
+        inset-inline-start: 1rem;
+        transition: rotate 0.3s;
+      }
+    }
+
+    .detailsPremix[open] summary::before {
+      rotate: 90deg;
+    }
+
+    .detailsPremix::details-content {
+      display: block;
+      margin-inline: 2rem;
+      block-size: 0;
+      overflow: hidden;
+      transition-property: block-size, content-visibility;
+      transition-duration: 0.5s;
+      transition-behavior: allow-discrete;
+    }
+
+    .detailsPremix[open]::details-content {
+      block-size: auto;
+      block-size: calc-size(auto);
+    }
+  }
+  .searchPremixIngredient {
+    width: 90%;
+    margin: 4px;
+  }
+}

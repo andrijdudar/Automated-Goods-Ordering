@@ -1,3 +1,10 @@
+.containerStoplist {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+}
+
 .stopList {
   display: flex;
   flex-direction: column;
@@ -5,7 +12,7 @@
   padding: 10px 20px;
 }
 
-.stoplist-container {
+.stoplistContainer {
   display: flex;
   flex-direction: row;
   justify-content: space-between;

@@ -59,7 +59,7 @@ export const getIngredientOrders = () => {
 
 // Запит для отримання всіх об'єктів dishes, які є в стоп-листі
 export const getDishesInStopList = () => {
-  return client.get('/api/dishes/stop-list');
+  return client.get('/api/stop-list/');
 };
 
 // Запит для отримання всіх об'єктів dishes, які потрібно продати

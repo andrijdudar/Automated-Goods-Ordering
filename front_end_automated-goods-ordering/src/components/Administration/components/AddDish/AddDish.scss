@@ -1,0 +1,151 @@
+.AddDish {
+
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  overflow-y: auto;
+  height: 100vh;
+  background-color: #282c34;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  padding: 0 auto;
+  // background-color: #282c34;
+}
+.control {
+  gap: 40px;
+}
+
+.name-cocktail-title {
+  font-size: 20px;
+  color: white;
+}
+.ingredient {
+  margin-left: 10px;
+}
+
+select {
+  // width: 300px;
+}
+
+
+.input-ml {
+  width: 65px;
+}
+
+.input-in {
+  width: 200px;
+}
+
+.deleteInput {
+  margin-left: 5px;
+  margin-top: 6px;
+}
+
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 1000ms;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity 1000ms;
+}
+
+.textarea {
+  margin: 0;
+  border-radius: 25px;
+  width: 100%;
+}
+.btn-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 50px;
+}
+
+.btn_cencel,
+.btn_done {
+  color: white;
+  background-color: #282c34;
+  border: 2px solid whitesmoke;
+  border-radius: 500px;
+  height: 40px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  min-width: 120px;
+}
+
+.disabled {
+  opacity: 0;
+  cursor: auto;
+}
+
+.is-danger-btn {
+  border: 2px solid red;
+  box-shadow: 2px 2px 5px red;
+}
+
+.eror {
+  color:red;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 5px;
+}
+select {
+// font-size: 16px;
+  // padding: 5px 35px;
+  // height: 50px;
+  // border-radius: 40px;
+}
+
+.btn {
+  color: white;
+  background-color: #282c34;
+  border: 2px solid whitesmoke;
+  border-radius: 500px;
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+}
+
+.btn_add:hover {
+  color: greenyellow;
+  border-color: greenyellow;
+}
+.btn_dell:hover {
+  color: red;
+  border-color: red;
+}
+
+.file {
+  margin: 0 auto;;
+}
+
+.photo {
+  width: 300px;
+  border-radius: 20px;
+}

@@ -3,30 +3,9 @@
   gap: 30px;
   justify-content: space-between;
   align-self: center;
-  font-size: large;
+  font-size: 14px;
   font-weight: bold;
-
 }
-
-@media (orientation: portrait) {
-  .nav-buttons {
-    display: flex;
-    justify-content: space-between;
-    transform: translateY(-60px);
-    opacity: 0;
-    position: absolute;
-    z-index: 5990;
-  }
-
-  .nav-buttons-active {
-    display: flex;
-    justify-content: space-around;
-    opacity: 1;
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-}
-
 
 .nav-button-link {
   display: block;
@@ -35,13 +14,26 @@
   border-radius: 25px;
   padding: 10px 15px;
 
+  &:hover {
+    color: var(--colorTextOrangeHover);
+    border-color: var(--colorTextOrangeHover);
+  }
+}
+
+.nav-button-link-settings {
+  display: block;
+  color: var(--colorTextOrange);
+  border: 1px solid transparent;
+  border-radius: 25px;
+  padding: 5px 10px;
+  transition: .3s;
+
+  &:hover {
+    transform: scale(1.2)
+  }
 }
 
 .has-border {
-  border: 1px solid var(--colorTextOrange);
-}
-
-.nav-button-link:hover {
-  color: var(--colorTextOrangeHover);
-  border-color: var(--colorTextOrangeHover);
+  /* border: 1px solid var(--colorTextOrange); */
+  box-shadow: 0 0 5px .9px var(--colorTextOrange);
 }

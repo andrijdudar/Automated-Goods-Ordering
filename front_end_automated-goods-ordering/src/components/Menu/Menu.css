@@ -11,6 +11,9 @@
   .menu {
     grid-template-columns: 1fr;
     grid-template-rows: min-content 1fr;
-    grid-template-areas: "side-bar""cards";
+    grid-template-areas:
+      "side-bar"
+      "cards";
+  overflow: auto;
   }
 }

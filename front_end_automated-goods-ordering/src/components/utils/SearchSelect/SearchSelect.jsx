@@ -4,33 +4,24 @@ import './SearchSelect.css';
 import cn from 'classnames';
 import { Link } from 'react-router-dom';
 
-
-// useEffect(() => {
-//   setSearchDishes(dishesCategory);
-//   setOptions(convertToOptionsSelect(dishesCategory));
-// }, [dishesCategory]);
-
-
-// const [options, setOptions] = useState(convertToOptionsSelect(dishesCategory));
+// const options = useMemo(() => convertToOptionsSelect(ingredients), [ingredients]);
 
 // const updateOptions = useCallback((options) => {
-//   const dishCategory = dishesCategory;
-//   const filteredDishes = dishCategory.filter(dish =>
-//     options.some(item => item.id === dish.id && item.value === dish.dish_name)
-//   );
-//   setSearchDishes(filteredDishes)
-// }, [dishesCategory]);
+//   setSearchIngredients(filteredItems(ingredients, options));
+// }, [ingredients]);
 
-const SearchSelect = ({ options, updateOptions, placeholder, path }) => {
-  const [selected, setSelected] = useState([]);
+const SearchSelect = ({ options, updateOptions, placeholder, selectOpen = true, size = 'is-medium', path, onSelect }) => {
+  const [selected, setSelected] = useState('');
   const [toggle, setToggle] = useState(false);
   const [error, setError] = useState(false);
   const [filtredOptions, setFiltredOptions] = useState(options);
+  const [selectedOptions, setSelectedOptions] = useState([]);
 
   const handleInput = (event) => {
     if (toggle === false) {
       setToggle(true);
     }
+
     setSelected(event.target.value);
     const filteredOptions = options.filter((value) => value.value.toLowerCase().includes(event.target.value.toLowerCase()));
     setFiltredOptions(filteredOptions);
@@ -53,12 +44,24 @@ const SearchSelect = ({ options, updateOptions, placeholder, path }) => {
   //   setToggle(false);
   // };
 
+  const handleSelect = (option) => {
+    const alreadySelected = selectedOptions.some(selected => selected.id === option.id);
+    // console.log(alreadySelected);
+    const newSelectedOptions = alreadySelected
+      ? selectedOptions.filter(selected => selected.id !== option.id)
+      : [...selectedOptions, option];
+
+    setSelectedOptions((prew) => [...prew, option]);
+    onSelect(newSelectedOptions);
+    // console.log(newSelectedOptions);
+  };
+
   return (
     <div className='searchSelect'>
       <div className="field-search">
         <p className="control has-icons-left has-icons-right">
           <input
-            className="input-search input is-rounded is-medium"
+            className={`input-search input is-rounded ${size}`}
             type="text"
             value={selected}
             placeholder={placeholder}
@@ -71,8 +74,8 @@ const SearchSelect = ({ options, updateOptions, placeholder, path }) => {
               }, 200);
             }}
           />
-          <span className="icon is-small is-left">
-            <i className="fas fa-search"></i>
+          <span className="iconSearch icon is-small is-left">
+            <i className="iconSearch fas fa-search"></i>
           </span>
           {!!selected.length && (
             <button
@@ -80,8 +83,8 @@ const SearchSelect = ({ options, updateOptions, placeholder, path }) => {
               className="del"
               onClick={() => { setSelected(''); setToggle(false); updateOptions(options) }}
             >
-              <span className="icon delete is-right ">
-                <i className='delete  is-danger'>
+              <span className="del1 icon delete is-right ">
+                <i className='delete is-danger'>
 
                 </i>
               </span>
@@ -100,23 +103,23 @@ const SearchSelect = ({ options, updateOptions, placeholder, path }) => {
       )}
 
 
-      <div className={cn('select', 'is-multiple',
+      {selectOpen && <div className={cn('select', 'is-multiple',
         { 'display-none': !filtredOptions.length || !toggle },
-        { 'search-select ': toggle}
+        { 'search-select ': toggle }
       )}>
         <select className='search-select' multiple size={filtredOptions.length > 8 ? 8 : filtredOptions.length}>
-          {filtredOptions.map(value => (
+          {filtredOptions.map(option => (
             <option
-              key={value.id}
-              value={value.dish_name}
-              onClick={(event) => handleInput(event)}
-              onSelect={(event) => handleInput(event)}
+              key={option.id}
+              value={option.value}
+              onClick={() => handleSelect(option)}
+              onSelect={() => handleSelect(option)}
             >
-              {value.value}
+              {option.value}
             </option>
           ))}
         </select>
-      </div>
+      </div>}
     </div>);
 };
 export default SearchSelect;

@@ -1,23 +1,24 @@
 .wrapper {
-  margin: 10px;
+  /* margin: 10px; */
   grid-area: side-bar;
-  position: fixed;
-  width: min-content;
-  min-width: 400px;
+  /* position: fixed; */
+  /* min-width: 400px; */
+  /* max-width: 400px; */
   padding: 10px;
   overflow-y: auto;
   height: 90vh;
-  transition: all .3s;
+  /* transition: all .5s else-in-out; */
+  transition: all .3s ease-in-out;
 }
 
-
-#sidebar-wrapper {
+/* #sidebar-wrapper {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   grid-area: side-bar;
   width: 100%;
-}
+} */
 
 .sidebar-nav {
   width: 100%;
@@ -32,10 +33,11 @@
   background-color: transparent;
   box-shadow: 2px 1px 5px rgba(0, 0, 0, 1),
     -2px -2px 5px rgba(255, 255, 255, 0.14);
-  transition: all .3s ease;
+  transition: all 0.3s ease;
   padding-left: 30px;
+  padding-right: 30px;
   font-size: 24px;
-
+  width: 100%;
 }
 
 .sidebar-nav li:hover,
@@ -48,7 +50,7 @@
   /* filter: brightness(90%); */
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 1),
     -4px -4px 5px rgba(255, 255, 255, 0.14);
-  transition: all .3s ease;
+  transition: all 0.3s ease;
 }
 
 .btn-aside {
@@ -78,27 +80,34 @@
   color: var(--colorTextOrangeHover);
 }
 
-
 @media (orientation: portrait) {
   .wrapper {
     position: fixed;
     right: 0;
-    height: min-content;
-    max-height: 85vh;
+    overflow-y: scroll;
+    z-index: 1;
     min-width: 360px;
-    max-width: 80%;
+    width: 100vw;
+    max-width: 100vh;
     border-radius: 0.5em;
-    transform: translateX(110%);
+    transform: translateY(-110%);
     background-color: var(--backgroundNavBar);
-    z-index: 10;
+    /* height: 0; */
+    /* block-size: 0; */
+    /* padding-block: 0; */
+    /* display: none; */
+    transition: all .5s else-in-out;
+    transition-behavior: allow-discrete;
   }
 
-  .sidebar-nav-active {
-    transform: translateX(0px);
+  .wrapper-open {
+    position: relative;
+    padding-block: 10px;
+    display: block;
+    height: min-content;
+    /* overflow-y: auto; */
+    transform: translateX(0);
+    overflow-y: hidden;
+    /* opacity: 0.01; */
   }
-}
-
-.search {
-  top: 200px;
-  margin-right: 10px;
 }

@@ -5,7 +5,7 @@ import Icon from '@mdi/react';
 import { mdiGlassCocktail } from '@mdi/js';
 import cn from 'classnames';
 import { SERVER_URL } from '../../services/httpClient';
-import SearchSelect from '../SearchSelect/SearchSelect';
+import SearchSelect from '../utils/SearchSelect/SearchSelect';
 
 
 export function CocktailForm({ cocktailList, setCocktailList }) {
@@ -192,7 +192,7 @@ export function CocktailForm({ cocktailList, setCocktailList }) {
       className='form-container section is-flex is-flex
       -direction-column'
     >
-      <SearchSelect options={options} placeholder='Categories' path='/menu'/>
+      <SearchSelect options={options} placeholder='Categories' path='/menu' />
       {/* Назва коктейля, посуд, Приготування, Лід */}
       <div className="control field is-flex is-flex-direction-column ">
         <div>

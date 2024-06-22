@@ -1,0 +1,95 @@
+.SideBarAdmin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  width: 400px;
+  padding: 20px;
+  // overflow: auto;
+  @media (orientation: portrait) {
+    justify-content: center;
+    width: 100vw;
+    height: 100%;
+  }
+}
+.sideBarAdminDetails {
+  padding: 15px 10px;
+  // box-sizing: border-box;
+  width: 100%;
+  color: var(--colorTextOrange);
+  // line-height: 100%;
+  border-radius: 0.5em;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 1),
+    -2px -2px 5px rgba(255, 255, 255, 0.14);
+  transition: all 0.3s ease;
+  &:hover {
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 1),
+      -3px -3px 5px rgba(255, 255, 255, 0.14);
+  }
+}
+summary {
+  padding-inline: 2rem;
+  position: relative;
+}
+
+summary::marker {
+  content: "▶";
+  content: none;
+}
+summary::before {
+  content: "▶";
+  position: absolute;
+  inset-inline-start: 0.5rem;
+  // inset-block-start: -0.01rem;
+  transition: rotate 0.3s;
+}
+
+ .sideBarAdminDetails[open] summary::before {
+      rotate: 90deg;
+    }
+
+.sideBarAdminDetails::details-content {
+  // background: #000;
+  display: block;
+  margin-inline: 2rem;
+  block-size: 0;
+  overflow: hidden;
+  transition-property: block-size, content-visibility;
+  transition-duration: 0.5s;
+  transition-behavior: allow-discrete;
+}
+
+.sideBarAdminDetails[open]::details-content {
+  block-size: auto;
+  block-size: calc-size(auto);
+}
+
+// summary::marker {
+//   content: "👉  ";
+// }
+
+.subLinksSideBarAdmin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+.admin-link {
+  color: var(--colorTextOrange);
+  border-radius: 0.5em;
+  box-shadow: 2px 1px 5px rgba(0, 0, 0, 1),
+    -2px -2px 5px rgba(255, 255, 255, 0.14);
+  transition: all 0.3s ease;
+  padding: 10px 10px;
+  width: 80%;
+  // margin-left: 20px;
+  &:hover {
+    cursor: pointer;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 1),
+      -2px -2px 5px rgba(255, 255, 255, 0.14);
+    transition: all 0.3s ease;
+  }
+}

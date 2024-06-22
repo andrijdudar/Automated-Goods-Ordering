@@ -1,6 +1,6 @@
 
 
-export const SERVER_URL = '';
+export const SERVER_URL = 'https://ago-ago-8570935a.koyeb.app';
 
 const handleResponse = async (response) => {
   if (!response.ok) {
@@ -31,8 +31,16 @@ export const client = {
     try {
       const formData = new FormData();
       formData.append(data);
+      // for (const key in data) {
+      //   if (data.hasOwnProperty(key)) {
+      //     formData.append(key, data[key]);
+      //   }
+      // }
       const response = await fetch(SERVER_URL + url, {
         method: 'POST',
+        // headers: {
+        //   'Content-Type': 'application/json',
+        // },
         body: formData,
       });
       return await handleResponse(response);

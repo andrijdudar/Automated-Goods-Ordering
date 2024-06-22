@@ -1,5 +1,5 @@
 .searchSelect {
-  max-width: 500px;
+  max-width: 350px;
   box-sizing: border-box;
   background-color: none;
 }
@@ -46,27 +46,41 @@ i {
 .icon-select>i {
   margin-top: 10px;
 }
-.icon-select:hover{
-  position:relative;
-  cursor:pointer;
-  z-index:22222;
+
+.icon-select:hover {
+  position: relative;
+  cursor: pointer;
+  z-index: 22222;
 }
-option, select {
-  /* position: relative; */
-  top:0;
+
+option,
+select {
+  top: 0;
   max-width: 500px;
-  /* border-radius: 0.5em; */
   border: 1px solid transparent;
   box-shadow: 2px 1px 5px rgba(0, 0, 0, 1),
     -2px -2px 5px rgba(255, 255, 255, 0.14);
   transition: all 0.3s ease;
 }
+
 .search-select {
-  position:absolute;
+  position: absolute;
+  z-index: 1000;
 }
 
 .del {
-  position: relative;
-  right: 10px;
-  top:-3px;
+position: relative;
+right: 10px;
+top:50%;
+}
+
+.del>.icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-60%);
+}
+
+.del1 {
+  display: none;
+  /* position: relative; */
 }
